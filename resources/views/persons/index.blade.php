@@ -9,6 +9,7 @@
 @section('content')
 <p>Lista das pessoas.</p>
 <div class="card">
+    @include('flash-message')    
     <div class="card-header">
         Ações
     </div>
@@ -50,6 +51,9 @@
                         <td>
                             <a href="{{ route('persons.create', ['id' => $person->id]) }}" data-toggle="tooltip" data-placement="top" title="Atualizar registro">
                                 <i class="fas fa-pen"></i>
+                            </a>&nbsp;
+                            <a style="color: red;" title="Deletar registro?" href="#" data-href="{{ route('persons.delete', ['id' => $person->id]) }}" data-toggle="modal" data-target="#confirm-delete">
+                                <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
                     </tr>
@@ -71,6 +75,14 @@
     <!-- /.card-body -->
 </div>
 
+@include('modal',
+    [
+        'idModal' => 'confirm-delete',
+        'title' => 'Confirmação',
+        'message' => 'Você tem certeza que desejar remover o registro?',
+        'type' => 'danger'
+    ]
+)
 @stop
 
 @section('js')
@@ -83,6 +95,10 @@
         });
 
         $('[data-toggle="tooltip"]').tooltip();
+
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        });
     });
 </script>
 @stop
