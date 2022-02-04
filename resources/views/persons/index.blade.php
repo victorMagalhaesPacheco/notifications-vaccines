@@ -9,6 +9,16 @@
 @section('content')
 <p>Lista das pessoas.</p>
 <div class="card">
+    <div class="card-header">
+        Ações
+    </div>
+    <div class="card-body">
+        <a href="{{ route('persons.create') }}">
+            <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</button>
+        </a>
+    </div>
+</div>
+<div class="card">
     <div class="card-body">
         <table id="persons" class="table table-bordered table-striped">
             <thead>
@@ -17,7 +27,8 @@
                     <th>Nome</th>
                     <th>Filhos</th>
                     <th>E-mail</th>
-                    <th>Data de criação</th>
+                    <th>Data de nascimento</th>
+                    <th>Data de criação do registro</th>
                     <th>Data de atualização</th>
                 </tr>
             </thead>
@@ -34,8 +45,9 @@
                             @endforelse
                         </td>
                         <td>{{ $person->email ?? '---' }}</td>
-                        <td>{{ $person->created_at ?? '---' }}</td>
-                        <td>{{ $person->updated_at ?? '---' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($person->birth)->format('d/m/Y') ?? '---' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($person->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($person->updated_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -45,7 +57,8 @@
                     <th>Nome</th>
                     <th>Filhos</th>
                     <th>E-mail</th>
-                    <th>Data de criação</th>
+                    <th>Data de nascimento</th>
+                    <th>Data de criação do registro</th>
                     <th>Data de atualização</th>
                 </tr>
             </tfoot>

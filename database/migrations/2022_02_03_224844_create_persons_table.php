@@ -18,6 +18,7 @@ class CreatePersonsTable extends Migration
             $table->foreignId('person_id')->nullable()->references('id')->on('persons');
             $table->string('name');
             $table->string('email')->nullable();
+            $table->date('birth');
             $table->timestamps();
         });
     }

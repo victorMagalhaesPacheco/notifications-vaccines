@@ -22,4 +22,6 @@ Auth::routes();
 Route::group(['prefix' => '/admin'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/persons', [App\Http\Controllers\PersonController::class, 'index'])->name('persons.index');
+    Route::get('/persons/create', [App\Http\Controllers\PersonController::class, 'create'])->name('persons.create');
+    Route::post('/persons/store', [App\Http\Controllers\PersonController::class, 'store'])->name('persons.store');
 });
