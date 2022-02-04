@@ -26,11 +26,17 @@ class PersonController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $person = null;
+        if ($request->id) {
+            $person = Person::findOrFail($request->id);
+        }
+
         $persons = Person::all();
         return view('persons.create', [
-            'persons' => $persons
+            'persons' => $persons,
+            'person' => $person
         ]);
     }
 
@@ -38,23 +44,27 @@ class PersonController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:2|max:255',
-            'email' => 'required|unique:persons|email:rfc|max:255',
+            'email' => 'required|unique:persons,email,' . $request->id . '|email:rfc|max:255',
             'birth' => 'required|date'
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('persons.create'))
+            return  back()
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        Person::create([
-            'person_id' => $request->person_id,
-            'name' => $request->name,
-            'email' => $request->email,
-            'birth' => $request->birth,
-        ]);
+        Person::updateOrCreate(
+            ['id' => $request->id],
+            [
+                'person_id' => $request->person_id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'birth' => $request->birth,
+            ]
+        
+        );
 
-        return back()->with('success', 'Pessoa adicionada com sucesso.');
+        return back()->with('success', 'Pessoa adicionada/atualizada com sucesso.');
     }
 }
