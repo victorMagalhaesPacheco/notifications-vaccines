@@ -237,7 +237,7 @@ return [
         ],
         [
             'text'        => 'Início',
-            'url'         => 'admin/pages',
+            'url'         => 'admin/home',
             'icon'        => 'far fa-fw fa-file'
         ],
         ['header' => 'Cadastros'],
@@ -327,7 +327,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
