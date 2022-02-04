@@ -246,6 +246,11 @@ return [
             'url'  => 'admin/persons',
             'icon' => 'fas fa-fw fa-user',
         ],
+        [
+            'text' => 'Vacinas',
+            'url'  => 'admin/vaccines',
+            'icon' => 'fas fa-fw fa-syringe',
+        ],
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',

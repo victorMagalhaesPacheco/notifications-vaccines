@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/admin'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -25,4 +23,9 @@ Route::group(['prefix' => '/admin'], function () {
     Route::get('/persons/create/{id?}', [App\Http\Controllers\PersonController::class, 'create'])->name('persons.create');
     Route::get('/persons/delete/{id}', [App\Http\Controllers\PersonController::class, 'delete'])->name('persons.delete');
     Route::post('/persons/store', [App\Http\Controllers\PersonController::class, 'store'])->name('persons.store');
+
+    Route::get('/vaccines', [App\Http\Controllers\VaccineController::class, 'index'])->name('vaccines.index');
+    Route::get('/vaccines/create/{id?}', [App\Http\Controllers\VaccineController::class, 'create'])->name('vaccines.create');
+    Route::get('/vaccines/delete/{id}', [App\Http\Controllers\VaccineController::class, 'delete'])->name('vaccines.delete');
+    Route::post('/vaccines/store', [App\Http\Controllers\VaccineController::class, 'store'])->name('vaccines.store');
 });

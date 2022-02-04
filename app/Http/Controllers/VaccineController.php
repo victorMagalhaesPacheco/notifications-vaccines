@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Models\Vaccine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PersonController extends Controller
+class VaccineController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -20,32 +20,30 @@ class PersonController extends Controller
 
     public function index()
     {
-        $persons = Person::all();
-        return view('persons.index', [
-            'persons' => $persons
+        $vaccines = Vaccine::all();
+        return view('vaccines.index', [
+            'vaccines' => $vaccines
         ]);
     }
 
     public function create(Request $request)
     {
-        $person = null;
+        $vaccine = null;
         if ($request->id) {
-            $person = Person::findOrFail($request->id);
+            $vaccine = Vaccine::findOrFail($request->id);
         }
 
-        $persons = Person::all();
-        return view('persons.create', [
-            'persons' => $persons,
-            'person' => $person
+        $vaccines = Vaccine::all();
+        return view('vaccines.create', [
+            'vaccines' => $vaccines,
+            'vaccine' => $vaccine
         ]);
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:2|max:255',
-            'email' => 'required|unique:persons,email,' . $request->id . '|email:rfc|max:255',
-            'birth' => 'required|date'
+            'name' => 'required|min:2|max:255'
         ]);
 
         if ($validator->fails()) {
@@ -54,13 +52,10 @@ class PersonController extends Controller
                         ->withInput();
         }
 
-        Person::updateOrCreate(
+        Vaccine::updateOrCreate(
             ['id' => $request->id],
             [
-                'person_id' => $request->person_id,
                 'name' => $request->name,
-                'email' => $request->email,
-                'birth' => $request->birth,
             ]
         
         );
@@ -70,13 +65,9 @@ class PersonController extends Controller
 
     public function delete(Request $request)
     {
-        $person = Person::findOrFail($request->id);
+        $vaccine = Vaccine::findOrFail($request->id);
 
-        if (count($person->childrens) > 0) {
-            return back()->with(['alert' => 'Não é possível deleter  registro. O mesmo tem filhos vínculados.']);
-        }
-
-        $person->delete();      
+        $vaccine->delete();      
         return back()->with(['success' => 'Registro deletado.']);
 
     }

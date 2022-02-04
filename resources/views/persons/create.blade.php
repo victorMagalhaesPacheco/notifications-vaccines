@@ -3,7 +3,20 @@
 @section('title', 'Pessoas')
 
 @section('content_header')
-    <h1>{{ !$person ? 'Cadastro' : 'Atualização' }} de pessoa</h1>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ !$person ? 'Cadastro' : 'Atualização' }} de pessoa</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('persons.index') }}">Lista de pessoas</a></li>
+                    <li class="breadcrumb-item active">{{ !$person ? 'Cadastro' : 'Atualização' }} de pessoa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('content')
@@ -32,17 +45,17 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="name">Nome</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome" value="{{ old('name', $person->name ?? '') }}">
+                <div class="form-group required">
+                    <label for="name" class="control-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome" value="{{ old('name', $person->name ?? '') }}" required>
                 </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}">
+                <div class="form-group required">
+                    <label for="email" class="control-label">E-mail</label>
+                    <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}" required>
                 </div>
-                <div class="form-group">
-                    <label for="birth">Data de nascimento</label>
-                    <input type="date" class="form-control" id="birth" name="birth" placeholder="Informe a data de nascimento" value="{{ old('birth', $person->birth ?? '') }}">
+                <div class="form-group required">
+                    <label for="birth" class="control-label">Data de nascimento</label>
+                    <input type="date" class="form-control" id="birth" name="birth" placeholder="Informe a data de nascimento" value="{{ old('birth', $person->birth ?? '') }}" required>
                 </div>
             </div>
             <div class="card-footer">
@@ -60,3 +73,5 @@
         });
     </script>
 @stop
+
+@include('commom')

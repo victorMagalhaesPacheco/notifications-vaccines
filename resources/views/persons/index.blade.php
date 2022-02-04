@@ -3,11 +3,22 @@
 @section('title', 'Pessoas')
 
 @section('content_header')
-<h1>Pessoas</h1>
+<div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Lista das pessoas</h1>
+        </div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
+                <li class="breadcrumb-item active">Lista das pessoas</li>
+            </ol>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('content')
-<p>Lista das pessoas.</p>
 <div class="card">
     @include('flash-message')    
     <div class="card-header">
