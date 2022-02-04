@@ -240,7 +240,7 @@ return [
             'url'         => 'admin/home',
             'icon'        => 'far fa-fw fa-file'
         ],
-        ['header' => 'Cadastros'],
+        ['header' => 'Gerenciamento'],
         [
             'text' => 'Pessoas',
             'url'  => 'admin/persons',
@@ -250,6 +250,11 @@ return [
             'text' => 'Vacinas',
             'url'  => 'admin/vaccines',
             'icon' => 'fas fa-fw fa-syringe',
+        ],
+        [
+            'text' => 'Notificações',
+            'url'  => 'admin/notifications',
+            'icon' => 'fas fa-fw fa-bell',
         ],
         // [
         //     'text' => 'change_password',

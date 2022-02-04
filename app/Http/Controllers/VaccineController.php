@@ -33,9 +33,7 @@ class VaccineController extends Controller
             $vaccine = Vaccine::findOrFail($request->id);
         }
 
-        $vaccines = Vaccine::all();
         return view('vaccines.create', [
-            'vaccines' => $vaccines,
             'vaccine' => $vaccine
         ]);
     }
