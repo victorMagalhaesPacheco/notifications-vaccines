@@ -17,7 +17,8 @@ class CreateNotificationsPlatformsTable extends Migration
             $table->id();
             $table->foreignId('notification_id')->references('id')->on('notifications');
             $table->foreignId('platform_id')->references('id')->on('platforms');
-            $table->integer('status');
+            $table->text('message');
+            $table->timestamps();
         });
     }
 

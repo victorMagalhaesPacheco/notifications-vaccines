@@ -12,8 +12,6 @@ class NotificationPlatform extends Model
     const STATUS_DISABLED = 0;
     const STATUS_ENABLED = 1;
 
-    public $timestamps = false;
-
     protected $fillable = [
         'notification_id',
         'platform_id',

@@ -17,7 +17,6 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->foreignId('vaccine_id')->references('id')->on('vaccines');
             $table->string('name');
-            $table->text('message');
             $table->dateTime('dayhour');
             $table->integer('alertdaysbefore')->nullable();
             $table->integer('status');
