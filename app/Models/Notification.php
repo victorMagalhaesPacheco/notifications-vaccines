@@ -15,8 +15,7 @@ class Notification extends Model
     protected $fillable = [
         'vaccine_id',
         'name',
-        'message',
-        'dayhour',
+        'days',
         'alertdaysbefore',
         'status'
     ];
@@ -29,5 +28,10 @@ class Notification extends Model
         ];
 
         return !empty($status) ? $list[$status] : $list;
+    }
+
+    public function platforms()
+    {
+        return $this->hasMany(NotificationPlatform::class);
     }
 }

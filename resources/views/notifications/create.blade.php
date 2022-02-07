@@ -34,7 +34,7 @@
             <div class="card-body">
                 <div class="form-group required">
                     <label  class="control-label">Vacina</label>
-                    <select class="form-control select2" style="width: 100%;" name="vaccine_id">
+                    <select class="form-control select2" id="vaccine_id" style="width: 100%;" name="vaccine_id" required>
                         <option value="">--- Selecione a vacina ---</option>
                         @foreach ($vaccines as $vaccine)
                             <option 
@@ -46,24 +46,42 @@
                     </select>
                 </div>
                 <div class="form-group required">
+                    <label  class="control-label">Plataformas</label>
+                    <select class="form-control select2" id="platform_ids" style="width: 100%;" name="platform_ids[]" multiple="multiple" required>
+                        <option value="">--- Selecione a(s) plataforma(s) ---</option>
+                        @foreach ($platforms as $platform)
+                            <option 
+                                @if (!empty(old('platform_ids')) && in_array($platform->id, old('platform_ids')))
+                                    selected
+                                @endif  
+                            
+                            value="{{ $platform->id }}">#{{ $platform->id }} - {{ $platform->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group required">
                     <label for="name" class="control-label">Nome</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da notificação" value="{{ old('name', $notification->name ?? '') }}" required>
                 </div>
+
+                @foreach ($platforms as $platform)
+                    <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
+                        <label for="message" class="control-label">Mensagem para a plataforma: {{ $platform->name }}</label>
+                        <textarea class="form-control" class="message_platform" name="message_platform_{{ $platform->id }}" id="message_platform_{{ $platform->id }}" placeholder="Digite a mensagem da notificação aqui">{{ old('message_platform_' . $platform->id) }}</textarea>
+                    </div>
+                @endforeach
+                
                 <div class="form-group required">
-                    <label for="message" class="control-label">Mensagem</label>
-                    <textarea class="form-control" id="message" name="story" placeholder="Digite a mensagem da notificação aqui! Para a plataforma SMS, o tamanho máximo deve ser 160 caracteres sem acentos."></textarea>
+                    <label for="days" class="control-label">Dias para vacinação após nascimento</label>
+                    <input type="number" class="form-control" id="days" name="days" placeholder="Informe a quantidade de dias para envio da notificação" value="{{ old('days', $notification->days ?? '') }}" required>
                 </div>
-                <div class="form-group required">
-                    <label for="dayhour" class="control-label">Dia e hora da notificação</label>
-                    <input type="datetime" class="form-control" id="dayhour" name="dayhour" placeholder="Informe o dia e hora da notificação" value="{{ old('dayhour', $notification->dayhour ?? '') }}" required>
-                </div>
-                <div class="form-group required">
-                    <label for="alertdaysbefore" class="control-label">Alertar notificação com quantos dias de antes?</label>
-                    <input type="number" class="form-control" id="alertdaysbefore" name="alertdaysbefore" placeholder="Informe com quantos dias você deseja alertar sobre a notificação" value="{{ old('alertdaysbefore', $notification->alertdaysbefore ?? '') }}" required>
+                <div class="form-group">
+                    <label for="alertdaysbefore">Alertar notificação com quantos dias de antes?</label>
+                    <input type="number" class="form-control" id="alertdaysbefore" name="alertdaysbefore" placeholder="Informe com quantos dias você deseja alertar sobre a notificação" value="{{ old('alertdaysbefore', $notification->alertdaysbefore ?? '') }}">
                 </div>
                 <div class="form-group required">
                     <label  class="control-label">Situação</label>
-                    <select class="form-control" style="width: 100%;" name="status">
+                    <select class="form-control" style="width: 100%;" name="status" required>
                         <option value="">--- Selecione a situação da notificação ---</option>
                         @foreach ($notificationListStatus as $key => $value)
                             <option value="{{ $key }}">{{ $value }}</option>
@@ -82,7 +100,33 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+
+            ruleFieldsPlatforms();
+
+            $('#vaccine_id').select2({
+                'placeholder': 'Selecione a vacina'
+            });
+            $('#platform_ids').select2({
+                'placeholder': 'Selecione a(s) plataforma(s)'
+            });
+
+            $("#platform_ids").change(function() {
+                ruleFieldsPlatforms();
+            });
+
+            function ruleFieldsPlatforms() {
+                $(".div_platform").hide('slow');
+
+                var platforms = $("#platform_ids").val();
+
+                $(".message_platform").removeAttr('required');
+
+                platforms.forEach(value => {
+                    $("#div_platform_" + value).show('slow');
+                    $("#message_platform_" + value).attr('required', 'required');
+                    
+                });
+            }
         });
     </script>
 @stop

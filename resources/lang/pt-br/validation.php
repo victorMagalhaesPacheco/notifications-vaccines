@@ -186,7 +186,9 @@ return [
         'description' => 'descrição',
         'password_confirmation' => 'confirmação da senha',
         'current_password' => 'senha atual',
-        'birth' => 'data de nascimento'
+        'birth' => 'data de nascimento',
+        'days' => 'dias',
+        'status' => 'situação'
     ],
 
 ];

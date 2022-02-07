@@ -13,7 +13,7 @@ class CreateNotificationsPlatformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications_platforms', function (Blueprint $table) {
+        Schema::create('notification_platforms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('notification_id')->references('id')->on('notifications');
             $table->foreignId('platform_id')->references('id')->on('platforms');
@@ -29,6 +29,6 @@ class CreateNotificationsPlatformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications_platforms');
+        Schema::dropIfExists('notification_platforms');
     }
 }

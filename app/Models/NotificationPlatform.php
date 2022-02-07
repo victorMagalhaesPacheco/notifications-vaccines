@@ -15,6 +15,17 @@ class NotificationPlatform extends Model
     protected $fillable = [
         'notification_id',
         'platform_id',
-        'status'
+        'message'
     ];
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class);
+    }
+
+
+    public function platform()
+    {
+        return $this->belongsTo(Platform::class);
+    }
 }
