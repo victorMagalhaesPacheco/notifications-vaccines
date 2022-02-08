@@ -34,4 +34,9 @@ class Notification extends Model
     {
         return $this->hasMany(NotificationPlatform::class);
     }
+
+    public function vaccine()
+    {
+        return $this->belongsTo(Vaccine::class);
+    }
 }

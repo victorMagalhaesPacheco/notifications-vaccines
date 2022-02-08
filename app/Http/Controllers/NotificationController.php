@@ -21,13 +21,13 @@ class NotificationController extends Controller
         $this->middleware('auth');
     }
 
-    // public function index()
-    // {
-    //     $vaccines = Vaccine::all();
-    //     return view('vaccines.index', [
-    //         'vaccines' => $vaccines
-    //     ]);
-    // }
+    public function index()
+    {
+        $notifications = Notification::all();
+        return view('notifications.index', [
+            'notifications' => $notifications
+        ]);
+    }
 
     public function create(Request $request)
     {
