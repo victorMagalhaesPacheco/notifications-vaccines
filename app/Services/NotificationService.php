@@ -19,7 +19,8 @@ class NotificationService
             ]
         );
 
-
+        $notification->platforms()->delete();
+        
         foreach ($data->platform_ids as $plataformId) {
             $notification->platforms()->createMany([
                 [

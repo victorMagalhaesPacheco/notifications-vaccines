@@ -51,7 +51,7 @@
                         <option value="">--- Selecione a(s) plataforma(s) ---</option>
                         @foreach ($platforms as $platform)
                             <option 
-                                @if (!empty(old('platform_ids')) && in_array($platform->id, old('platform_ids')))
+                                @if (!empty(old('platform_ids')) && in_array($platform->id, old('platform_ids')) || isset($notification->platforms) && in_array($platform->id, $notification->platforms->pluck('platform_id')->toArray()))
                                     selected
                                 @endif  
                             
@@ -63,11 +63,20 @@
                     <label for="name" class="control-label">Nome</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da notificação" value="{{ old('name', $notification->name ?? '') }}" required>
                 </div>
-
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
                         <label for="message" class="control-label">Mensagem para a plataforma: {{ $platform->name }}</label>
-                        <textarea class="form-control" class="message_platform" name="message_platform_{{ $platform->id }}" id="message_platform_{{ $platform->id }}" placeholder="Digite a mensagem da notificação aqui">{{ old('message_platform_' . $platform->id) }}</textarea>
+                            @if (!empty($notification))
+                                @foreach ($notification->platforms as $notificationPlatform)
+                                    @if ($notificationPlatform->platform_id == $platform->id)
+                                        @php
+                                            $message = $notificationPlatform->message
+                                        @endphp
+                                    @endif
+                                @endforeach
+                            @endif
+                        
+                        <textarea class="form-control" class="message_platform" name="message_platform_{{ $platform->id }}" id="message_platform_{{ $platform->id }}" placeholder="Digite a mensagem da notificação aqui">{{ old('message_platform_' . $platform->id, $message ?? '') }}</textarea>
                     </div>
                 @endforeach
                 
@@ -84,7 +93,12 @@
                     <select class="form-control" style="width: 100%;" name="status" required>
                         <option value="">--- Selecione a situação da notificação ---</option>
                         @foreach ($notificationListStatus as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
+                            <option 
+                            @if (old('status') == $key || ($notification && $notification->status == $key))
+                                selected
+                            @endif    
+                            
+                            value="{{ $key }}">{{ $value }}</option>
                         @endforeach
                     </select>
                 </div>

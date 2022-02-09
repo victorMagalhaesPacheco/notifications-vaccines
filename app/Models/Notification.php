@@ -27,7 +27,7 @@ class Notification extends Model
             self::STATUS_ENABLED => 'Habilitado',
         ];
 
-        return !empty($status) ? $list[$status] : $list;
+        return isset($status) ? $list[$status] : $list;
     }
 
     public function platforms()
