@@ -68,11 +68,7 @@ class PersonController extends Controller
     public function delete(Request $request)
     {
         $person = Person::findOrFail($request->id);
-
-        if (count($person->childrens) > 0) {
-            return back()->with(['alert' => 'Não é possível deleter  registro. O mesmo tem filhos vínculados.']);
-        }
-
+        $person->childrens()->delete();
         $person->delete();      
         return back()->with(['success' => 'Registro deletado.']);
 
