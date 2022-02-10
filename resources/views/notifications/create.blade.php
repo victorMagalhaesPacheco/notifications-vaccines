@@ -46,6 +46,10 @@
                     </select>
                 </div>
                 <div class="form-group required">
+                    <label for="name" class="control-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da notificação" value="{{ old('name', $notification->name ?? '') }}" required>
+                </div>
+                <div class="form-group required">
                     <label  class="control-label">Plataformas</label>
                     <select class="form-control select2" id="platform_ids" style="width: 100%;" name="platform_ids[]" multiple="multiple" required>
                         <option value="">--- Selecione a(s) plataforma(s) ---</option>
@@ -58,10 +62,7 @@
                             value="{{ $platform->id }}">#{{ $platform->id }} - {{ $platform->name }}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="form-group required">
-                    <label for="name" class="control-label">Nome</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da notificação" value="{{ old('name', $notification->name ?? '') }}" required>
+                    <i>Palavras dinâmicas: [child.name] | (Ex.: Olá Pessoa X, seu [child.name] deve ser vacinado em breve.)</i>
                 </div>
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">

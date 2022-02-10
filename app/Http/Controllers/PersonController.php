@@ -3,24 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Person;
+use App\Services\PersonService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class PersonController extends Controller
 {
+
+    private $personService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(PersonService $personService)
     {
         $this->middleware('auth');
+        $this->personService = $personService;
     }
 
     public function index()
     {
-        $persons = Person::all();
+        $persons = Person::where('person_id', null)->get();
         return view('persons.index', [
             'persons' => $persons
         ]);
@@ -45,7 +50,7 @@ class PersonController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:2|max:255',
             'email' => 'required|unique:persons,email,' . $request->id . '|email:rfc|max:255',
-            'birth' => 'required|date'
+            'phone' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -54,16 +59,8 @@ class PersonController extends Controller
                         ->withInput();
         }
 
-        Person::updateOrCreate(
-            ['id' => $request->id],
-            [
-                'person_id' => $request->person_id,
-                'name' => $request->name,
-                'email' => $request->email,
-                'birth' => $request->birth,
-            ]
-        
-        );
+        $data = $request;
+        $this->personService->create($data);
 
         return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
     }

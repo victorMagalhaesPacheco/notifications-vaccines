@@ -15,7 +15,8 @@ class Person extends Model
         'person_id',
         'name',
         'email',
-        'birth'
+        'birth',
+        'phone'
     ];
 
     public function childrens()

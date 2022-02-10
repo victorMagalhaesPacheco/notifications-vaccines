@@ -11,14 +11,17 @@ use Illuminate\Support\Facades\Validator;
 
 class NotificationController extends Controller
 {
+    private $notificationService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(NotificationService $notificationService)
     {
         $this->middleware('auth');
+        $this->notificationService = $notificationService;
     }
 
     public function index()
@@ -68,9 +71,8 @@ class NotificationController extends Controller
                         ->withInput();
         }
 
-        $notificationService = new NotificationService();
         $data = $request;
-        $notificationService->create($data);
+        $this->notificationService->create($data);
         
         return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
     }

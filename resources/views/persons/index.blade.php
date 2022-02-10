@@ -39,7 +39,7 @@
                     <th>Nome</th>
                     <th>Filhos</th>
                     <th>E-mail</th>
-                    <th>Data de nascimento</th>
+                    <th>Telefone</th>
                     <th>Data de criação do registro</th>
                     <th>Ações</th>
                 </tr>
@@ -57,7 +57,7 @@
                             @endforelse
                         </td>
                         <td>{{ $person->email ?? '---' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($person->birth)->format('d/m/Y') ?? '---' }}</td>
+                        <td>{{ $person->phone ?? '---' }}</td>
                         <td>{{ \Carbon\Carbon::parse($person->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
                         <td>
                             <a href="{{ route('persons.create', ['id' => $person->id]) }}" data-toggle="tooltip" data-placement="top" title="Atualizar registro">
