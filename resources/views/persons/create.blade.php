@@ -57,13 +57,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group required">
                                                 <label for="name" class="control-label">Nome</label>
-                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho" value="{{ $child->name }}">
+                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho" value="{{ $child->name }}" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="form-group required">
                                                 <label for="birth" class="control-label">Data de nascimento</label>
-                                                <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" value="{{ $child->birth }}">
+                                                <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" value="{{ $child->birth }}" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 ">
@@ -96,7 +96,7 @@
             $('#phone').inputmask('(99)99999-9999')
 
             $('#btn-new-child').click(function() {
-                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome</label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho"> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento</label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento"> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
+                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome</label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho" required> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento</label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
                 $("#container-child").append(rowChild);
             });
 

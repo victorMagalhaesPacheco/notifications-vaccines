@@ -40,7 +40,7 @@
                     <th>Filhos</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
-                    <th>Data de criação do registro</th>
+                    <th>Data do registro</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -76,8 +76,8 @@
                     <th>Nome</th>
                     <th>Filhos</th>
                     <th>E-mail</th>
-                    <th>Data de nascimento</th>
-                    <th>Data de criação do registro</th>
+                    <th>Telefone</th>
+                    <th>Data do registro</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>
