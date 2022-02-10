@@ -62,7 +62,11 @@
                             value="{{ $platform->id }}">#{{ $platform->id }} - {{ $platform->name }}</option>
                         @endforeach
                     </select>
-                    <i>Palavras dinâmicas: [child.name] | (Ex.: Olá Pessoa X, seu [child.name] deve ser vacinado em breve.)</i>
+                    <i>
+                        Palavras dinâmicas:<br> 
+                        Nome responsável = <b>[person.name]</b> (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
+                        Nome criança = <b>[child.name]</b> (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
+                    </i>
                 </div>
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">

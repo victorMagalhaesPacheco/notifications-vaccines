@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<i class="fas fa-fw fa-syringe"></i> Sistema de<br> Notificações de vacinas',
+    'logo' => '<i class="fas fa-fw fa-syringe"></i> VacinaME',
     'logo_img' => false,
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
