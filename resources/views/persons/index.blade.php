@@ -37,7 +37,7 @@
                 <tr>
                     <th>#id</th>
                     <th>Nome</th>
-                    <th>Filhos</th>
+                    <th>Crianças</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Data do registro</th>
@@ -74,7 +74,7 @@
                 <tr>
                     <th>#id</th>
                     <th>Nome</th>
-                    <th>Filhos</th>
+                    <th>Crianças</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Data do registro</th>
@@ -85,6 +85,8 @@
     </div>
     <!-- /.card-body -->
 </div>
+
+
 
 @include('modal',
     [
@@ -102,7 +104,9 @@
         $('#persons').DataTable({
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.11.4/i18n/pt_pt.json"
-            }
+            },
+            "autoWidth": false,
+            "responsive": true,
         });
 
         $('[data-toggle="tooltip"]').tooltip();

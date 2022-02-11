@@ -33,20 +33,20 @@
             @endif
             <div class="card-body">
                 <div class="form-group required">
-                    <label for="name" class="control-label">Nome</label>
+                    <label for="name" class="control-label">Nome do responsável:</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome" value="{{ old('name', $person->name ?? '') }}" required>
                 </div>
                 <div class="form-group required">
-                    <label for="email" class="control-label">E-mail</label>
+                    <label for="email" class="control-label">E-mail:</label>
                     <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}" required>
                 </div>
                 <div class="form-group required">
-                    <label for="name" class="control-label">Telefone (SMS e WhatsApp)</label>
+                    <label for="name" class="control-label">Telefone (SMS e WhatsApp):</label>
                     <input type="text" class="form-control" id="phone" name="phone" placeholder="Informe o telefone" value="{{ old('phone', $person->phone ?? '') }}" required>
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Filhos</h3>
+                        <h3 class="card-title">Crianças</h3>
                         
                     </div>
                     <div class="card-body">
@@ -56,13 +56,13 @@
                                     <div class="row align-items-center" id="row-child" >
                                         <div class="col-sm-6">
                                             <div class="form-group required">
-                                                <label for="name" class="control-label">Nome</label>
-                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho" value="{{ $child->name }}" required>
+                                                <label for="name" class="control-label">Nome da criança: </label>
+                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" value="{{ $child->name }}" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
                                             <div class="form-group required">
-                                                <label for="birth" class="control-label">Data de nascimento</label>
+                                                <label for="birth" class="control-label">Data de nascimento: </label>
                                                 <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" value="{{ $child->birth }}" required>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                 @endforeach
                             @endif
                         </div>
-                        <button type="button" class="btn btn-info" id="btn-new-child"><i class="fas fa-plus"></i> Novo filho</button>
+                        <button type="button" class="btn btn-info" id="btn-new-child"><i class="fas fa-plus"></i> Nova criança</button>
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
             $('#phone').inputmask('(99)99999-9999')
 
             $('#btn-new-child').click(function() {
-                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome</label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome do filho" required> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento</label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
+                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança: </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" required> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
                 $("#container-child").append(rowChild);
             });
 

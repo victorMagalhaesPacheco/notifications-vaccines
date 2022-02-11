@@ -62,11 +62,20 @@
                             value="{{ $platform->id }}">#{{ $platform->id }} - {{ $platform->name }}</option>
                         @endforeach
                     </select>
-                    <i>
-                        Palavras dinâmicas:<br> 
-                        Nome responsável = <b>[person.name]</b> (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
-                        Nome criança = <b>[child.name]</b> (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
-                    </i>
+                    <div style="margin-top: 15px;" class="alert alert-info alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fas fa-info"></i> Informação!</h5>
+                        <p>
+                            <i>
+                                Palavras dinâmicas:<br> 
+                                Nome do responsável = <b>[person.name]</b> (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
+                                Nome da criança = <b>[child.name]</b> (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
+                            </i>
+                        </p>
+                        <p>Nos envios de mensagens pelas plataformas (SMS, WhatsApp e email) será enviado somente o primeiro nome da pessoa.</p>
+                    </div>
+
+                    
                 </div>
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
