@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\Person;
 use App\Models\Platform;
 use App\Models\Vaccine;
 use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 
 class NotificationController extends Controller
 {
@@ -77,12 +79,8 @@ class NotificationController extends Controller
         return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
     }
 
-    // public function delete(Request $request)
-    // {
-    //     $vaccine = Vaccine::findOrFail($request->id);
-
-    //     $vaccine->delete();      
-    //     return back()->with(['success' => 'Registro deletado.']);
-
-    // }
+    public function send()
+    {
+        $this->notificationService->send();
+    }
 }

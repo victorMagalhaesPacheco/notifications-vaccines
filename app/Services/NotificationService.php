@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Models\Notification;
-
+use App\Models\Person;
+use App\Models\Platform;
+use Twilio\Rest\Client;
 class NotificationService
 {
     public function create($data)
@@ -29,5 +31,50 @@ class NotificationService
                 ]
             ]);
         }
+    }
+
+    public function send()
+    {
+        $notifications = Notification::all()->where('status', Notification::STATUS_ENABLED);
+        $childrens = Person::whereNotNull('person_id')->get();
+
+        foreach ($notifications as $notification) {
+            foreach ($notification->platforms as $notificationPlatform) {
+                foreach ($childrens as $child) {
+                    $birth = \Carbon\Carbon::parse($child->birth);
+                    $daySend = $birth->addDays($notification->days);
+                    //$daySendAlertDaysBefore = $birth->addDays($notification->alertdaysbefore);
+
+                    if ($daySend->format('Y-m-d') == Date('Y-m-d')) {
+                        $message = str_replace(
+                            ['[person.name]', '[child.name]'],
+                            [$child->parent->name, $child->name],
+                            $notificationPlatform->message
+                        );
+
+                        $this->sendMessage($notificationPlatform->platform_id, $child->parent->phone, $message);                     
+                    }
+                }
+            }
+        }
+    }
+
+    private function sendMessage($platformId, $to, $message)
+    {
+        $sid = env('TWILIO_ACCOUNT_SID', '');
+        $token = env('TWILIO_AUTH_TOKEN', '');
+        $client = new Client($sid, $token);
+
+
+        if ($platformId == Platform::PLATFORM_SMS) {
+            $request = $client->messages->create(
+                '+55' . $to,
+                [
+                    'from' => env('TWILIO_NUMBER_FROM', ''),
+                    'body' => $message
+                ]
+            );
+        }
+       
     }
 }

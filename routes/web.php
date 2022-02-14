@@ -33,4 +33,6 @@ Route::group(['prefix' => '/admin'], function () {
     Route::get('/notifications/create/{id?}', [App\Http\Controllers\NotificationController::class, 'create'])->name('notifications.create');
     Route::get('/notifications/delete/{id}', [App\Http\Controllers\NotificationController::class, 'delete'])->name('notifications.delete');
     Route::post('/notifications/store', [App\Http\Controllers\NotificationController::class, 'store'])->name('notifications.store');
+    
+    Route::get('/notifications/send', [App\Http\Controllers\NotificationController::class, 'send'])->name('notifications.send');
 });
