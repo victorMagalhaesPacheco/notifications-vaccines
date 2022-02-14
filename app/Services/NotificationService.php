@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Notification;
+use App\Models\NotificationSend;
 use App\Models\Person;
 use App\Models\Platform;
 use Twilio\Rest\Client;
@@ -51,22 +52,21 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             $notificationPlatform->message
                         );
-
-                        $this->sendMessage($notificationPlatform->platform_id, $child->parent->phone, $message);                     
+                        $this->sendMessage($notificationPlatform, $child->parent->phone, $message);                     
                     }
                 }
             }
         }
     }
 
-    private function sendMessage($platformId, $to, $message)
+    private function sendMessage($notificationPlatform, $to, $message)
     {
         $sid = env('TWILIO_ACCOUNT_SID', '');
         $token = env('TWILIO_AUTH_TOKEN', '');
         $client = new Client($sid, $token);
 
 
-        if ($platformId == Platform::PLATFORM_SMS) {
+        if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
             $request = $client->messages->create(
                 '+55' . $to,
                 [
@@ -74,6 +74,14 @@ class NotificationService
                     'body' => $message
                 ]
             );
+
+            NotificationSend::create([
+                'notification_id' => $notificationPlatform->notification_id,
+                'platform_id' => $notificationPlatform->platform_id,
+                'sid' => $request->sid,
+                'to' => $request->to,
+                'body' => $request->body
+            ]);
         }
        
     }
