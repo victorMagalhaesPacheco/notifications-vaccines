@@ -43,14 +43,25 @@ class NotificationService
             foreach ($notification->platforms as $notificationPlatform) {
                 foreach ($childrens as $child) {
                     $birth = \Carbon\Carbon::parse($child->birth);
-                    $daySend = $birth->addDays($notification->days);
-                    //$daySendAlertDaysBefore = $birth->addDays($notification->alertdaysbefore);
+                    $birthAlertDaysBefore = \Carbon\Carbon::parse($child->birth);
 
+                    $daySend = $birth->addDays($notification->days);
+                    $daySendAlertDaysBefore = $birthAlertDaysBefore->addDays($notification->alertdaysbefore);
+              
                     if ($daySend->format('Y-m-d') == Date('Y-m-d')) {
                         $message = str_replace(
                             ['[person.name]', '[child.name]'],
                             [$child->parent->name, $child->name],
                             $notificationPlatform->message
+                        );
+                        $this->sendMessage($notificationPlatform, $child->parent->phone, $message);                     
+                    }
+
+                    if ($daySendAlertDaysBefore->format('Y-m-d') == Date('Y-m-d')) {
+                        $message = str_replace(
+                            ['[person.name]', '[child.name]'],
+                            [$child->parent->name, $child->name],
+                            '[Alerta] ' . $notificationPlatform->message
                         );
                         $this->sendMessage($notificationPlatform, $child->parent->phone, $message);                     
                     }
