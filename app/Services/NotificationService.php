@@ -54,7 +54,7 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             $notificationPlatform->message
                         );
-                        $this->sendMessage($notificationPlatform, $child->parent->phone, $message);                     
+                        $this->sendMessage($notificationPlatform, $child->parent, $message);                     
                     }
 
                     if ($daySendAlertDaysBefore->format('Y-m-d') == Date('Y-m-d')) {
@@ -63,23 +63,22 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             '[Alerta] ' . $notificationPlatform->message
                         );
-                        $this->sendMessage($notificationPlatform, $child->parent->phone, $message);                     
+                        $this->sendMessage($notificationPlatform, $child->parent, $message);                     
                     }
                 }
             }
         }
     }
 
-    private function sendMessage($notificationPlatform, $to, $message)
+    private function sendMessage($notificationPlatform, $parent, $message)
     {
         $sid = env('TWILIO_ACCOUNT_SID', '');
         $token = env('TWILIO_AUTH_TOKEN', '');
         $client = new Client($sid, $token);
 
-
         if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
             $request = $client->messages->create(
-                '+55' . $to,
+                '+55' . $parent->phone,
                 [
                     'from' => env('TWILIO_NUMBER_FROM', ''),
                     'body' => $message
@@ -92,6 +91,21 @@ class NotificationService
                 'sid' => $request->sid,
                 'to' => $request->to,
                 'body' => $request->body
+            ]);
+        } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
+            $details = [
+                'title' => 'VacineME - Notificação',
+                'message' => $message
+            ];
+              
+            \Mail::to($parent->email)->send(new \App\Mail\NotificationMail($details));
+
+            NotificationSend::create([
+                'notification_id' => $notificationPlatform->notification_id,
+                'platform_id' => $notificationPlatform->platform_id,
+                'sid' => '---',
+                'to' => $parent->email,
+                'body' => $message
             ]);
         }
        
