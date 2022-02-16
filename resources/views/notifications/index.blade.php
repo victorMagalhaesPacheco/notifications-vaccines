@@ -181,6 +181,18 @@
                                                         <h5>#{{ $notificationPlatform->id }} -
                                                             {{ $notificationPlatform->platform->name }}</h5>
                                                         <p>{{ $notificationPlatform->message }}</p>
+                                                         @foreach ($notification->sent as $sent)
+                                                            @if($sent->platform_id == $notificationPlatform->platform_id)
+                                                                <div class="callout callout-info">
+                                                                    <small class="badge badge-info">#SID:</small> {{ $sent->sid }}<br>
+                                                                    <small class="badge badge-info">Para:</small>  {{ '#' . $sent->person->id . ' | ' . $sent->person->name . ' | ' . $sent->to }}<br>
+                                                                    <small class="badge badge-info">Mensagem:</small>  {{ $sent->body }}<br>
+                                                                    <small class="badge badge-info">Enviado em:</small>  {{ \Carbon\Carbon::parse($sent->created_at)->format('d/m/Y H:i:s') ?? '---' }}<br>
+                                                                </div>
+                                                            @endif
+                                                            
+                                                         @endforeach
+                                                        
                                                     </div>
                                                 @endforeach
                                             </div>

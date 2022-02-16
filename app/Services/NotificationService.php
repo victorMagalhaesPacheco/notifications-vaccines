@@ -14,7 +14,6 @@ class NotificationService
 
     public function __construct()
     {
-
         $sid = env('TWILIO_ACCOUNT_SID', '');
         $token = env('TWILIO_AUTH_TOKEN', '');
         $this->twilio = new Client($sid, $token);
@@ -97,6 +96,7 @@ class NotificationService
             NotificationSend::create([
                 'notification_id' => $notificationPlatform->notification_id,
                 'platform_id' => $notificationPlatform->platform_id,
+                'person_id' => $parent->id,
                 'sid' => $request->sid,
                 'to' => $request->to,
                 'body' => $request->body
@@ -112,6 +112,7 @@ class NotificationService
             NotificationSend::create([
                 'notification_id' => $notificationPlatform->notification_id,
                 'platform_id' => $notificationPlatform->platform_id,
+                'person_id' => $parent->id,
                 'sid' => '---',
                 'to' => $parent->email,
                 'body' => $message

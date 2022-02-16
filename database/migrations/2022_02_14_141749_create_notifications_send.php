@@ -17,6 +17,7 @@ class CreateNotificationsSend extends Migration
             $table->id();
             $table->foreignId('notification_id')->references('id')->on('notifications');
             $table->foreignId('platform_id')->references('id')->on('platforms');
+            $table->foreignId('person_id')->references('id')->on('persons');
             $table->string('sid');
             $table->string('to');
             $table->string('body');

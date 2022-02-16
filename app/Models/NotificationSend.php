@@ -14,6 +14,7 @@ class NotificationSend extends Model
     protected $fillable = [
         'notification_id',
         'platform_id',
+        'person_id',
         'sid',
         'to',
         'body',
@@ -28,5 +29,10 @@ class NotificationSend extends Model
     public function platform()
     {
         return $this->belongsTo(Platform::class);
+    }
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
     }
 }

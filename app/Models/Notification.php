@@ -39,4 +39,9 @@ class Notification extends Model
     {
         return $this->belongsTo(Vaccine::class);
     }
+
+    public function sent()
+    {
+        return $this->hasMany(NotificationSend::class, 'notification_id', 'id');
+    }
 }
