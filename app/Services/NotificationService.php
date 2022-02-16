@@ -7,8 +7,19 @@ use App\Models\NotificationSend;
 use App\Models\Person;
 use App\Models\Platform;
 use Twilio\Rest\Client;
+
 class NotificationService
 {
+    private $twilio;
+
+    public function __construct()
+    {
+
+        $sid = env('TWILIO_ACCOUNT_SID', '');
+        $token = env('TWILIO_AUTH_TOKEN', '');
+        $this->twilio = new Client($sid, $token);
+    }
+
     public function create($data)
     {
         $notification = Notification::updateOrCreate(
@@ -72,12 +83,10 @@ class NotificationService
 
     private function sendMessage($notificationPlatform, $parent, $message)
     {
-        $sid = env('TWILIO_ACCOUNT_SID', '');
-        $token = env('TWILIO_AUTH_TOKEN', '');
-        $client = new Client($sid, $token);
+        
 
         if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
-            $request = $client->messages->create(
+            $request = $this->twilio->messages->create(
                 '+55' . $parent->phone,
                 [
                     'from' => env('TWILIO_NUMBER_FROM', ''),
@@ -94,7 +103,7 @@ class NotificationService
             ]);
         } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
             $details = [
-                'title' => 'VacineME - Notificação',
+                'title' => 'VacinaME - Notificação',
                 'message' => $message
             ];
               

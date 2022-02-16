@@ -76,7 +76,7 @@
                         </tr>
 
                         <div class="modal fade" id="modal-messages_{{ $notification->id }}">
-                            <div class="modal-dialog modal-lg">
+                            <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title">Detalhes da notificação</h4>
@@ -94,61 +94,85 @@
                                                 </h3>
                                             </div>
                                             <div class="card-body">
-                                                <div class="callout callout-info">
-                                                    <h5>#ID</h5>
-                                                    <p>#{{ $notification->id }}</p>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>#ID</h5>
+                                                            <p>#{{ $notification->id }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Vacina</h5>
+                                                            <p>{{ $notification->vaccine->name }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Vacina</h5>
-                                                    <p>{{ $notification->vaccine->name }}</p>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Plataformas</h5>
+                                                            @forelse ($notification->platforms as $notificationPlatform)
+                                                                <span
+                                                                    class="badge bg-info">#{{ $notificationPlatform->platform->id }}
+                                                                    -
+                                                                    {{ $notificationPlatform->platform->name }}</span>
+                                                            @empty
+                                                                ---
+                                                            @endforelse
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Nome</h5>
+                                                            <p>{{ $notification->name }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Plataformas</h5>
-                                                    @forelse ($notification->platforms as $notificationPlatform)
-                                                        <span
-                                                            class="badge bg-info">#{{ $notificationPlatform->platform->id }}
-                                                            -
-                                                            {{ $notificationPlatform->platform->name }}</span>
-                                                    @empty
-                                                        ---
-                                                    @endforelse
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Dias para vacinação após nascimento</h5>
+                                                            <p>{{ $notification->days }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Alertar notificação em dias antes</h5>
+                                                            <p>{{ $notification->alertdaysbefore }}</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Nome</h5>
-                                                    <p>{{ $notification->name }}</p>
-                                                </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Dias para vacinação após nascimento</h5>
-                                                    <p>{{ $notification->days }}</p>
-                                                </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Alertar notificação em dias antes</h5>
-                                                    <p>{{ $notification->alertdaysbefore }}</p>
-                                                </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Situação</h5>
-                                                    <p>{{ \App\Models\Notification::listStatus($notification->status) }}
-                                                    </p>
-                                                </div>
-
-                                                <div class="callout callout-info">
-                                                    <h5>Data de criação</h5>
-                                                    <p>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
-                                                    </p>
-                                                </div>
-                                                <div class="callout callout-info">
-                                                    <h5>Ultima atualização</h5>
-                                                    <p>{{ \Carbon\Carbon::parse($notification->updated_at)->format('d/m/Y H:i:s') ?? '---' }}
-                                                    </p>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="callout callout-info">
+                                                            <h5>Situação</h5>
+                                                            <p>{{ \App\Models\Notification::listStatus($notification->status) }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="callout callout-info">
+                                                            <h5>Data de criação</h5>
+                                                            <p>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div class="callout callout-info">
+                                                            <h5>Ultima atualização</h5>
+                                                            <p>{{ \Carbon\Carbon::parse($notification->updated_at)->format('d/m/Y H:i:s') ?? '---' }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="card card-default">
                                             <div class="card-header">
                                                 <h3 class="card-title">
                                                     <i class="fas fa-bullhorn"></i>
-                                                    Mensagens e plataformas
+                                                    Plataformas e mensagens enviadas
                                                 </h3>
                                             </div>
                                             <div class="card-body">
