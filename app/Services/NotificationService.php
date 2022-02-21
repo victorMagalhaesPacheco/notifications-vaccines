@@ -116,6 +116,7 @@ class NotificationService
 
             $message = $request->body;
             $sid = $request->sid;
+            $to = $request->to;
         }
 
         NotificationSend::create([

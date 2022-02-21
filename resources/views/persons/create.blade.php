@@ -93,7 +93,7 @@
         $(document).ready(function() {
             $('.select2').select2();
 
-            $('#phone').inputmask('(99)99999-9999')
+            $('#phone').inputmask('(99)99999999[9]')
 
             $('#btn-new-child').click(function() {
                 var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança: </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" required> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
