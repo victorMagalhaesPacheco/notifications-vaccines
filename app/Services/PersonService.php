@@ -20,13 +20,15 @@ class PersonService
 
         $person->childrens()->delete();
         
-        foreach ($data->childrens as $key => $child) {
-            $person->childrens()->createMany([
-                [
-                    'name' => $child,
-                    'birth' => $data->birth[$key]
-                ]
-            ]);
+        if ($data->childrens) {
+            foreach ($data->childrens as $key => $child) {
+                $person->childrens()->createMany([
+                    [
+                        'name' => $child,
+                        'birth' => $data->birth[$key]
+                    ]
+                ]);
+            }
         }
     }
 }
