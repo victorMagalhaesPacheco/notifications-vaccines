@@ -82,8 +82,6 @@ class NotificationService
 
     private function sendMessage($notificationPlatform, $parent, $message)
     {
-        
-
         if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
             $request = $this->twilio->messages->create(
                 '+55' . $parent->phone,
@@ -93,14 +91,9 @@ class NotificationService
                 ]
             );
 
-            NotificationSend::create([
-                'notification_id' => $notificationPlatform->notification_id,
-                'platform_id' => $notificationPlatform->platform_id,
-                'person_id' => $parent->id,
-                'sid' => $request->sid,
-                'to' => $request->to,
-                'body' => $request->body
-            ]);
+            $sid = $request->sid;
+            $to = $request->to;
+            $message = $request->body;
         } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
             $details = [
                 'title' => 'VacinaME - Notificação',
@@ -109,15 +102,29 @@ class NotificationService
               
             \Mail::to($parent->email)->send(new \App\Mail\NotificationMail($details));
 
-            NotificationSend::create([
-                'notification_id' => $notificationPlatform->notification_id,
-                'platform_id' => $notificationPlatform->platform_id,
-                'person_id' => $parent->id,
-                'sid' => '---',
-                'to' => $parent->email,
-                'body' => $message
-            ]);
+            $sid = '---';
+            $to = $parent->email;
+        } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
+
+            $request = $this->twilio->messages->create(
+                'whatsapp:+55' . $parent->phone,
+                [
+                    'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
+                    'Body' => $message
+                ]
+            );
+
+            $message = $request->body;
+            $sid = $request->sid;
         }
-       
+
+        NotificationSend::create([
+            'notification_id' => $notificationPlatform->notification_id,
+            'platform_id' => $notificationPlatform->platform_id,
+            'person_id' => $parent->id,
+            'sid' => $sid,
+            'to' => $to,
+            'body' => $message
+        ]);
     }
 }
