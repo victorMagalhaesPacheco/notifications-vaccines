@@ -81,6 +81,9 @@
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
                         <label for="message" class="control-label">Mensagem para a plataforma: {{ $platform->name }}</label>
                             @if (!empty($notification))
+                                @php
+                                    $message = null;;
+                                @endphp
                                 @foreach ($notification->platforms as $notificationPlatform)
                                     @if ($notificationPlatform->platform_id == $platform->id)
                                         @php
