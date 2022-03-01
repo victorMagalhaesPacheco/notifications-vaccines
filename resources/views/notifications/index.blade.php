@@ -67,8 +67,7 @@
                             <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
                             </td>
                             <td>
-                                <a href="{{ route('notifications.create', ['id' => $notification->id]) }}"
-                                    data-toggle="tooltip" data-placement="top" title="Atualizar registro">
+                                <a href="{{ route('notifications.create', ['id' => $notification->id]) }}" title="Atualizar registro">
                                     <i class="fas fa-pen"></i>
                                 </a>&nbsp;
                                 <a href="#" title="Visualizar detalhes">
