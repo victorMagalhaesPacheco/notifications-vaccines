@@ -19,9 +19,8 @@
 @stop
 
 @section('content')
-
+    @include('flash-message')
     <div class="card">
-        @include('flash-message')
         <div class="card-header">
             Ações
         </div>

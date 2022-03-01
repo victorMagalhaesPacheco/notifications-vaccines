@@ -20,8 +20,8 @@
 @stop
 
 @section('content')
+    @include('flash-message')
     <div class="card">
-        @include('flash-message')
         <div class="card-header">
             <h3 class="card-title">Formulário de vacina</h3>
         </div>

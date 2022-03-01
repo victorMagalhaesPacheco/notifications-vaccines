@@ -54,6 +54,7 @@ class NotificationService
         if ($request->has('simulate')) {
             $simulate = $request->input('simulate');
         }
+
         $notificationsSend = [];
 
         foreach ($notifications as $notification) {
@@ -80,7 +81,7 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             '[Alerta] ' . $notificationPlatform->message
                         );
-                        $this->sendMessage($notificationPlatform, $child->parent, $message, $simulate);                     
+                        $notificationsSend[] = $this->sendMessage($notificationPlatform, $child->parent, $message, $simulate);                     
                     }
                 }
             }
@@ -148,7 +149,7 @@ class NotificationService
 
             $nofiticationsSimulated = [
                 'platform' => $notificationPlatform->platform->name,
-                'person_id' => '#' . $parent->id . ' - ' . $parent->name,
+                'person' => '#' . $parent->id . ' - ' . $parent->name,
                 'to' => $to,
                 'body' => $message
             ];

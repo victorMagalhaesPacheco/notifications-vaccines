@@ -82,6 +82,14 @@ class NotificationController extends Controller
     public function send(Request $request)
     {
         $notifications = $this->notificationService->send($request);
-        dd($notifications);
+
+        if ($request->has('simulate')) {
+            $simulate = $request->input('simulate');
+            if ($simulate) {
+                return view('notifications.simulate', ['notifications' => $notifications]);
+            }
+        } else {
+           return redirect()->route('notifications.index')->with('success', 'Notificações enviadas com sucesso.');
+        }
     }
 }
