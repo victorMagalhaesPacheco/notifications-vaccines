@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<i class="fas fa-fw fa-syringe"></i> VacinaME',
+    'logo' => '<i class="fas fa-fw fa-syringe"></i> VacinaMe',
     'logo_img' => false,
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,

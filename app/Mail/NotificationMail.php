@@ -30,7 +30,7 @@ class NotificationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('VacinaME')
+        return $this->subject('VacinaMe')
                     ->view('emails.notification-mail');
     }
 }

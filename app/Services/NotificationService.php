@@ -107,7 +107,7 @@ class NotificationService
                 $message = $request->body;
             } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
                 $details = [
-                    'title' => 'VacinaME - Notificação',
+                    'title' => 'VacinaMe - Notificação',
                     'message' => $message
                 ];
                   
@@ -118,7 +118,7 @@ class NotificationService
             } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
     
                 $request = $this->twilio->messages->create(
-                    'whatsapp:+55' . $parent->phone,
+                    'whatsapp:+55' . $parent->getPhoneWhatsapp(),
                     [
                         'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
                         'Body' => $message

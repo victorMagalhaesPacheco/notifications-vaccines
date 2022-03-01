@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>VacinaME</title>
+    <title>VacinaMe</title>
 </head>
 <body>
     <h1>{{ $details['title'] }}</h1>

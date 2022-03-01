@@ -28,4 +28,10 @@ class Person extends Model
     {
         return $this->belongsTo(Person::class, 'person_id', 'id');
     }
+
+    public function getPhoneWhatsapp()
+    {
+        $whatsapp = str_replace(['(', ')'], ['', ''], $this->phone);
+        return substr_replace($whatsapp, '', 2, 1);
+    }
 }

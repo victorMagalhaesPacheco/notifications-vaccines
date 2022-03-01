@@ -71,7 +71,7 @@
                                     data-toggle="tooltip" data-placement="top" title="Atualizar registro">
                                     <i class="fas fa-pen"></i>
                                 </a>&nbsp;
-                                <a href="#" data-toggle="tooltip" data-placement="top" title="Visualizar detalhes">
+                                <a href="#" title="Visualizar detalhes">
                                     <i style="color: green;" data-toggle="modal" data-target="#modal-messages_{{ $notification->id }}"
                                         class="fas fa-eye"></i>
                                 </a>
