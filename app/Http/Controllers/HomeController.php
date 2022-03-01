@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
+use App\Models\NotificationSend;
+use App\Models\Person;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +26,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countNotificationsSent = NotificationSend::all();
+        $countNotificationsEnabled = Notification::all()->where('status', Notification::STATUS_ENABLED);
+        $countPersons = Person::all()->whereNull('person_id');
+
+    
+        return view('home', [
+            'countNotificationsSent' => count($countNotificationsSent),
+            'countNotificationsEnabled' => count($countNotificationsEnabled),
+            'countPersons' => count($countPersons),
+        ]);
     }
 }
