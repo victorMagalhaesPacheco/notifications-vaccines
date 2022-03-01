@@ -7,6 +7,7 @@ use App\Models\NotificationSend;
 use App\Models\Person;
 use App\Models\Platform;
 use Twilio\Rest\Client;
+use Illuminate\Http\Request;
 
 class NotificationService
 {
@@ -44,10 +45,16 @@ class NotificationService
         }
     }
 
-    public function send()
+    public function send(Request $request)
     {
         $notifications = Notification::all()->where('status', Notification::STATUS_ENABLED);
         $childrens = Person::whereNotNull('person_id')->get();
+
+        $simulate = false;
+        if ($request->has('simulate')) {
+            $simulate = $request->input('simulate');
+        }
+        $notificationsSend = [];
 
         foreach ($notifications as $notification) {
             foreach ($notification->platforms as $notificationPlatform) {
@@ -64,7 +71,7 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             $notificationPlatform->message
                         );
-                        $this->sendMessage($notificationPlatform, $child->parent, $message);                     
+                        $notificationsSend[] = $this->sendMessage($notificationPlatform, $child->parent, $message, $simulate);                     
                     }
 
                     if ($daySendAlertDaysBefore->format('Y-m-d') == Date('Y-m-d')) {
@@ -73,59 +80,80 @@ class NotificationService
                             [$child->parent->name, $child->name],
                             '[Alerta] ' . $notificationPlatform->message
                         );
-                        $this->sendMessage($notificationPlatform, $child->parent, $message);                     
+                        $this->sendMessage($notificationPlatform, $child->parent, $message, $simulate);                     
                     }
                 }
             }
         }
+
+        return $notificationsSend;
     }
 
-    private function sendMessage($notificationPlatform, $parent, $message)
+    private function sendMessage($notificationPlatform, $parent, $message, $simulate)
     {
-        if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
-            $request = $this->twilio->messages->create(
-                '+55' . $parent->phone,
-                [
-                    'from' => env('TWILIO_NUMBER_FROM', ''),
-                    'body' => $message
-                ]
-            );
+        if (!$simulate) {
+            if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
+                $request = $this->twilio->messages->create(
+                    '+55' . $parent->phone,
+                    [
+                        'from' => env('TWILIO_NUMBER_FROM', ''),
+                        'body' => $message
+                    ]
+                );
+    
+                $sid = $request->sid;
+                $to = $request->to;
+                $message = $request->body;
+            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
+                $details = [
+                    'title' => 'VacinaME - Notificação',
+                    'message' => $message
+                ];
+                  
+                \Mail::to($parent->email)->send(new \App\Mail\NotificationMail($details));
+    
+                $sid = '---';
+                $to = $parent->email;
+            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
+    
+                $request = $this->twilio->messages->create(
+                    'whatsapp:+55' . $parent->phone,
+                    [
+                        'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
+                        'Body' => $message
+                    ]
+                );
+    
+                $message = $request->body;
+                $sid = $request->sid;
+                $to = $request->to;
+            }
+    
+            NotificationSend::create([
+                'notification_id' => $notificationPlatform->notification_id,
+                'platform_id' => $notificationPlatform->platform_id,
+                'person_id' => $parent->id,
+                'sid' => $sid,
+                'to' => $to,
+                'body' => $message
+            ]);
+        } else {
+            if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
+                $to = $parent->phone;
+            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
+                $to = $parent->email;
+            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
+                $to = $parent->phone;
+            }
 
-            $sid = $request->sid;
-            $to = $request->to;
-            $message = $request->body;
-        } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
-            $details = [
-                'title' => 'VacinaME - Notificação',
-                'message' => $message
+            $nofiticationsSimulated = [
+                'platform' => $notificationPlatform->platform->name,
+                'person_id' => '#' . $parent->id . ' - ' . $parent->name,
+                'to' => $to,
+                'body' => $message
             ];
-              
-            \Mail::to($parent->email)->send(new \App\Mail\NotificationMail($details));
 
-            $sid = '---';
-            $to = $parent->email;
-        } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
-
-            $request = $this->twilio->messages->create(
-                'whatsapp:+55' . $parent->phone,
-                [
-                    'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
-                    'Body' => $message
-                ]
-            );
-
-            $message = $request->body;
-            $sid = $request->sid;
-            $to = $request->to;
+            return $nofiticationsSimulated;
         }
-
-        NotificationSend::create([
-            'notification_id' => $notificationPlatform->notification_id,
-            'platform_id' => $notificationPlatform->platform_id,
-            'person_id' => $parent->id,
-            'sid' => $sid,
-            'to' => $to,
-            'body' => $message
-        ]);
     }
 }

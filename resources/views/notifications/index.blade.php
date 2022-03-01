@@ -28,6 +28,9 @@
             <a href="{{ route('notifications.create') }}">
                 <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</button>
             </a>
+            <a href="{{ route('notifications.send') }}?simulate=true">
+                <button type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i> Simular envio de notificações</button>
+            </a>
         </div>
     </div>
     <div class="card">

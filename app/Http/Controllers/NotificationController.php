@@ -79,8 +79,9 @@ class NotificationController extends Controller
         return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
     }
 
-    public function send()
+    public function send(Request $request)
     {
-        $this->notificationService->send();
+        $notifications = $this->notificationService->send($request);
+        dd($notifications);
     }
 }
