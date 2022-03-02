@@ -17,7 +17,7 @@
                     <p>Notificações enviadas</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-bag"></i>
+                    <i class="fas fa-check"></i>
                 </div>
                 <a href="{{ route('notifications.index') }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -31,7 +31,7 @@
                     <p>Notificações ativas</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stats-bars"></i>
+                    <i class="fas fa-paper-plane"></i>
                 </div>
                 <a href="{{ route('notifications.index') }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -45,7 +45,7 @@
                     <p>Pessoas cadastradas</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="fas fa-user"></i>
                 </div>
                 <a href="{{ route('persons.index') }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>

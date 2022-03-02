@@ -236,9 +236,9 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Início',
+            'text'        => 'Dashboard',
             'url'         => 'admin/home',
-            'icon'        => 'far fa-fw fa-file'
+            'icon'        => 'fas fa-chart-line'
         ],
         ['header' => 'Gerenciamento'],
         [
