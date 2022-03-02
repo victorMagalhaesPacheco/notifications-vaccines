@@ -20,7 +20,7 @@ class CreateNotificationsSend extends Migration
             $table->foreignId('person_id')->references('id')->on('persons');
             $table->string('sid');
             $table->string('to');
-            $table->string('body');
+            $table->text('body');
             $table->timestamps();
         });
     }
