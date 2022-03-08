@@ -35,7 +35,6 @@
         <table id="persons" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>#id</th>
                     <th>Nome</th>
                     <th>Crianças</th>
                     <th>E-mail</th>
@@ -47,7 +46,6 @@
             <tbody>
                 @foreach ($persons as $person)
                     <tr>
-                        <td>{{ $person->id }}</td>
                         <td>{{ $person->name }}</td>
                         <td>
                             @forelse ($person->childrens as $child)
@@ -72,7 +70,6 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th>#id</th>
                     <th>Nome</th>
                     <th>Crianças</th>
                     <th>E-mail</th>

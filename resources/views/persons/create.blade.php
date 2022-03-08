@@ -37,6 +37,10 @@
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome" value="{{ old('name', $person->name ?? '') }}" required>
                 </div>
                 <div class="form-group required">
+                    <label for="name" class="control-label">Nome do responsável para a notificação:</label>
+                    <input type="text" class="form-control" id="name_notification" name="name_notification" placeholder="Informe o nome para a notificação" value="{{ old('name_notification', $person->name_notification ?? '') }}" required>
+                </div>
+                <div class="form-group required">
                     <label for="email" class="control-label">E-mail:</label>
                     <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}" required>
                 </div>
@@ -54,13 +58,19 @@
                             @if($person)
                                 @foreach ($person->childrens as $child)
                                     <div class="row align-items-center" id="row-child" >
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-4">
                                             <div class="form-group required">
                                                 <label for="name" class="control-label">Nome da criança: </label>
                                                 <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" value="{{ $child->name }}" required>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
+                                            <div class="form-group required">
+                                                <label for="name" class="control-label">Nome da criança para notificação: </label>
+                                                <input type="text" class="form-control" class="childrens_notification" name="childrens_notification[]" placeholder="Informe o nome da criança para a notificação" value="{{ $child->name_notification }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
                                             <div class="form-group required">
                                                 <label for="birth" class="control-label">Data de nascimento: </label>
                                                 <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" value="{{ $child->birth }}" required>
@@ -96,7 +106,7 @@
             $('#phone').inputmask('(99)99999999[9]')
 
             $('#btn-new-child').click(function() {
-                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-6"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança: </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" required> </div> </div> <div class="col-sm-5"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div> </div> <div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div> </div>';    
+                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança: </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="nome da criança" required> </div></div><div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança para notificação: </label> <input type="text" class="form-control" class="childrens_notification" name="childrens_notification[]" placeholder="nome da criança para a notificação" required> </div></div><div class="col-sm-3"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div></div><div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div></div>';    
                 $("#container-child").append(rowChild);
             });
 

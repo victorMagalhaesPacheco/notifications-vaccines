@@ -42,14 +42,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($notifications as $notification)
+                    @forelse ($notifications as $notification)
                         <tr>
                             <td>{{ $notification['platform'] }}</td>
                             <td>{{ $notification['person'] }}</td>
                             <td>{{ $notification['to'] }}</td>
                             <td>{{ $notification['body'] }}</td>                          
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td>Nenhum registro para simulação encontrado.</td>                        
+                        </tr>
+                    @endforelse
                 </tbody>
                 <tfoot>
                     <tr>

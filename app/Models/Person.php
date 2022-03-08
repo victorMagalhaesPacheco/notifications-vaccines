@@ -14,6 +14,7 @@ class Person extends Model
     protected $fillable = [
         'person_id',
         'name',
+        'name_notification',
         'email',
         'birth',
         'phone'

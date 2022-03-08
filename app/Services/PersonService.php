@@ -13,6 +13,7 @@ class PersonService
             [
                 'person_id' => $data->person_id,
                 'name' => $data->name,
+                'name_notification' => $data->name_notification,
                 'email' => $data->email,
                 'phone' => $data->phone,
             ]
@@ -25,6 +26,7 @@ class PersonService
                 $person->childrens()->createMany([
                     [
                         'name' => $child,
+                        'name_notification' => $data->childrens_notification[$key],
                         'birth' => $data->birth[$key]
                     ]
                 ]);
