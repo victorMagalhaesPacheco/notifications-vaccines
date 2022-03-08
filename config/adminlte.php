@@ -252,10 +252,21 @@ return [
             'icon' => 'fas fa-fw fa-syringe',
         ],
         [
-            'text' => 'Notificações',
-            'url'  => 'admin/notifications',
-            'icon' => 'fas fa-fw fa-bell',
-        ],
+            'text'    => 'Notificações',
+            'icon'    => 'fas fa-fw fa-bell',
+            'submenu' => [
+                [
+                    'text' => 'Lista de notificações',
+                    'url'  => 'admin/notifications',
+                    'icon' => 'fas fa-list',
+                ],
+                [
+                    'text' => 'Histórico de notificações',
+                    'url'  => 'admin/notifications/history',
+                    'icon' => 'fas fa-history',
+                ],
+            ]
+        ]
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',

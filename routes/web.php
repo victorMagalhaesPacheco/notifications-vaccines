@@ -30,6 +30,7 @@ Route::group(['prefix' => '/admin'], function () {
     Route::post('/vaccines/store', [App\Http\Controllers\VaccineController::class, 'store'])->name('vaccines.store');
 
     Route::get('/notifications', [App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/history', [App\Http\Controllers\NotificationController::class, 'history'])->name('notifications.history');
     Route::get('/notifications/create/{id?}', [App\Http\Controllers\NotificationController::class, 'create'])->name('notifications.create');
     Route::get('/notifications/delete/{id}', [App\Http\Controllers\NotificationController::class, 'delete'])->name('notifications.delete');
     Route::post('/notifications/store', [App\Http\Controllers\NotificationController::class, 'store'])->name('notifications.store');

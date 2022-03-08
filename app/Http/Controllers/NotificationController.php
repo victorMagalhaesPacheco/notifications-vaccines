@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use App\Models\NotificationSend;
 use App\Models\Person;
 use App\Models\Platform;
 use App\Models\Vaccine;
@@ -91,5 +92,12 @@ class NotificationController extends Controller
         } else {
            return redirect()->route('notifications.index')->with('success', 'Notificações enviadas com sucesso.');
         }
+    }
+
+    public function history()
+    {
+        return view('notifications.history', [
+            'notificationsSent' => NotificationSend::all()
+        ]);
     }
 }

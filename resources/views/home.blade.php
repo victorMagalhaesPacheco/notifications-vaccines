@@ -19,7 +19,7 @@
                 <div class="icon">
                     <i class="fas fa-check"></i>
                 </div>
-                <a href="{{ route('notifications.index') }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{ route('notifications.history') }}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
         <!-- ./col -->
