@@ -77,7 +77,7 @@
                 </div>
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
-                        <label for="message" class="control-label">Mensagem para a plataforma de envio: {{ $platform->name }}</label>
+                        <label for="message" class="control-label">Mensagem para a plataforma de envio {{ $platform->name }}:</label>
                             @if (!empty($notification))
                                 @php
                                     $message = null;;

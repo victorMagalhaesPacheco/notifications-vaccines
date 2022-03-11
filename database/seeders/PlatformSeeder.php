@@ -14,12 +14,12 @@ class PlatformSeeder extends Seeder
     public function run()
     {
         Platform::create([
-            'name' => 'sms',
+            'name' => 'SMS',
             'status' => Platform::STATUS_ENABLED
         ]);
 
         Platform::create([
-            'name' => 'whatsapp',
+            'name' => 'WhatsApp',
             'status' => Platform::STATUS_ENABLED
         ]);
 
