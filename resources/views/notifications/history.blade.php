@@ -21,7 +21,7 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <table id="notifications" class="table table-bordered table-striped">
+            <table id="notifications" class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
                         <th>#id</th>
@@ -65,18 +65,4 @@
         </div>
         <!-- /.card-body -->
     </div>
-@stop
-
-@section('js')
-    <script>
-        $(document).ready(function() {
-            $('#notifications').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.4/i18n/pt_pt.json"
-                },
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script>
 @stop

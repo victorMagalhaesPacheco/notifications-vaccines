@@ -32,7 +32,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <table id="vaccines" class="table table-bordered table-striped">
+            <table id="vaccines" class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
                         <th>#id</th>
@@ -61,41 +61,25 @@
                         </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>#id</th>
-                        <th>Nome</th>
-                        <th>Data de criação do registro</th>
-                        <th>Ações</th>
-                    </tr>
-                </tfoot>
+               
             </table>
         </div>
         <!-- /.card-body -->
     </div>
 
     @include('modal',
-    [
-    'idModal' => 'confirm-delete',
-    'title' => 'Confirmação',
-    'message' => 'Você tem certeza que desejar remover o registro?',
-    'type' => 'danger'
-    ]
+        [
+            'idModal' => 'confirm-delete',
+            'title' => 'Confirmação',
+            'message' => 'Você tem certeza que desejar remover o registro?',
+            'type' => 'danger'
+        ]
     )
 @stop
 
 @section('js')
     <script>
         $(document).ready(function() {
-            $('#vaccines').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.4/i18n/pt_pt.json"
-                },
-                "autoWidth": false,
-                "responsive": true,
-                "order": []
-            });
-
             $('[data-toggle="tooltip"]').tooltip();
 
             $('#confirm-delete').on('show.bs.modal', function(e) {

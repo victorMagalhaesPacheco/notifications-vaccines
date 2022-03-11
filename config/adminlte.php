@@ -375,6 +375,11 @@ return [
                     'asset' => false,
                     'location' => 'https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js',
                 ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => asset('js/datatableconfig.js'),
+                ],
 
             ],
         ],
