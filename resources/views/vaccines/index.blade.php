@@ -44,7 +44,7 @@
                 <tbody>
                     @foreach ($vaccines as $vaccine)
                         <tr>
-                            <td>{{ $vaccine->id }}</td>
+                            <td>{{ (int)$vaccine->id }}</td>
                             <td>{{ $vaccine->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($vaccine->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
                             <td>
@@ -93,6 +93,7 @@
                 },
                 "autoWidth": false,
                 "responsive": true,
+                "order": []
             });
 
             $('[data-toggle="tooltip"]').tooltip();

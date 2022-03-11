@@ -29,7 +29,7 @@ class NotificationController extends Controller
 
     public function index()
     {
-        $notifications = Notification::all();
+        $notifications = Notification::orderBy('id', 'desc')->get();
         return view('notifications.index', [
             'notifications' => $notifications
         ]);

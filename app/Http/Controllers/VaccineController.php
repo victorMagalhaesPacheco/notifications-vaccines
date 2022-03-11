@@ -20,7 +20,7 @@ class VaccineController extends Controller
 
     public function index()
     {
-        $vaccines = Vaccine::all();
+        $vaccines = Vaccine::orderBy('id', 'desc')->get();
         return view('vaccines.index', [
             'vaccines' => $vaccines
         ]);

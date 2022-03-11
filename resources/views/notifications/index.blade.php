@@ -244,6 +244,7 @@
                 },
                 "autoWidth": false,
                 "responsive": true,
+                "order": []
             });
 
             $('[data-toggle="tooltip"]').tooltip();
