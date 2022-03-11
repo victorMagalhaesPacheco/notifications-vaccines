@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
                     <li class="breadcrumb-item active">Histórico de notificações</li>
                 </ol>
             </div>
@@ -26,7 +26,7 @@
                     <tr>
                         <th>#id</th>
                         <th>Notificação</th>
-                        <th>Plataforma</th>
+                        <th>Plataforma de envio</th>
                         <th>Pessoas</th>
                         <th>SID</th>
                         <th>Para</th>
@@ -53,7 +53,7 @@
                     <tr>
                         <th>#id</th>
                         <th>Notificação</th>
-                        <th>Plataforma</th>
+                        <th>Plataforma de envio</th>
                         <th>Pessoas</th>
                         <th>SID</th>
                         <th>Para</th>

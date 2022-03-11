@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Lista de notificações</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Notificações Cadastradas</a></li>
                     <li class="breadcrumb-item active">{{ !$notification ? 'Cadastro' : 'Atualização' }} de notificação</li>
                 </ol>
             </div>
@@ -23,7 +23,7 @@
     @include('flash-message')
     <div class="card">    
         <div class="card-header">
-            <h3 class="card-title">Formulário de notificação</h3>
+            <h3 class="card-title">Incluir/Atualizar Notificação</h3>
         </div>
         
         <form action="{{ route('notifications.store') }}" method="post">
@@ -46,13 +46,13 @@
                     </select>
                 </div>
                 <div class="form-group required">
-                    <label for="name" class="control-label">Nome</label>
+                    <label for="name" class="control-label">Nome da notificação</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome da notificação" value="{{ old('name', $notification->name ?? '') }}" required>
                 </div>
                 <div class="form-group required">
-                    <label  class="control-label">Plataformas</label>
+                    <label  class="control-label">Plataformas de envio</label>
                     <select class="form-control select2" id="platform_ids" style="width: 100%;" name="platform_ids[]" multiple="multiple" required>
-                        <option value="">--- Selecione a(s) plataforma(s) ---</option>
+                        <option value="">--- Selecione a(s) plataforma(s) de envio ---</option>
                         @foreach ($platforms as $platform)
                             <option 
                                 @if (!empty(old('platform_ids')) && in_array($platform->id, old('platform_ids')) || isset($notification->platforms) && in_array($platform->id, $notification->platforms->pluck('platform_id')->toArray()))
@@ -65,21 +65,19 @@
                     <div style="margin-top: 15px;" class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                         <h5><i class="icon fas fa-info"></i> Informação!</h5>
+                        <p>Para criar e editar mensagens personalizadas com os nomes dos responsáveis e das crianças cadastradas utilize as palavras dinâmicas conforme exemplificado abaixo.</p>
                         <p>
                             <i>
-                                Palavras dinâmicas:<br> 
-                                Nome do responsável = <b>[person.name]</b> (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
-                                Nome da criança = <b>[child.name]</b> (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
+                                Palavras dinâmicas:
+                                - Nome do responsável = [person.name] (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)
+                                - Nome da criança = [child.name] (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
                             </i>
                         </p>
-                        <p>Nos envios de mensagens pelas plataformas (SMS, WhatsApp e email) será enviado somente o primeiro nome da pessoa.</p>
-                    </div>
-
-                    
+                    </div>                    
                 </div>
                 @foreach ($platforms as $platform)
                     <div class="form-group required div_platform" id="div_platform_{{ $platform->id }}" style="display: none;">
-                        <label for="message" class="control-label">Mensagem para a plataforma: {{ $platform->name }}</label>
+                        <label for="message" class="control-label">Mensagem para a plataforma de envio: {{ $platform->name }}</label>
                             @if (!empty($notification))
                                 @php
                                     $message = null;;
@@ -98,11 +96,11 @@
                 @endforeach
                 
                 <div class="form-group required">
-                    <label for="days" class="control-label">Dias para vacinação após nascimento</label>
+                    <label for="days" class="control-label">Dia para notificar após nascimento (Data-chave recomendada para vacinação a partir do nascimento - contada em dias)</label>
                     <input type="number" class="form-control" id="days" name="days" placeholder="Informe a quantidade de dias para envio da notificação" value="{{ old('days', $notification->days ?? '') }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="alertdaysbefore">Alertar notificação com quantos dias de antes?</label>
+                    <label for="alertdaysbefore">Alerta adicional (dias antes da data recomendada no campo anterior)</label>
                     <input type="number" class="form-control" id="alertdaysbefore" name="alertdaysbefore" placeholder="Informe com quantos dias você deseja alertar sobre a notificação" value="{{ old('alertdaysbefore', $notification->alertdaysbefore ?? '') }}">
                 </div>
                 <div class="form-group required">
@@ -138,7 +136,7 @@
                 'placeholder': 'Selecione a vacina'
             });
             $('#platform_ids').select2({
-                'placeholder': 'Selecione a(s) plataforma(s)'
+                'placeholder': 'Selecione a(s) plataforma(s) de envio'
             });
 
             $("#platform_ids").change(function() {

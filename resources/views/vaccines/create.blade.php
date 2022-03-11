@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('vaccines.index') }}">Lista de vacinas</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('vaccines.index') }}">Vacinas Cadastradas no Sistema</a></li>
                     <li class="breadcrumb-item active">{{ !$vaccine ? 'Cadastro' : 'Atualização' }} de vacina</li>
                 </ol>
             </div>
@@ -21,11 +21,16 @@
 
 @section('content')
     @include('flash-message')
+    <div style="margin-top: 15px;" class="alert alert-info alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-info"></i> Informação!</h5>
+        <p>A inclusão de uma vacina neste cadastro tem por objetivo vincular uma notificação futura a este evento de vacinação, portanto caso a notificação possa ser útil para oportunizar mais de uma vacina em uma mesma data, as mesmas podem ser agrupadas neste cadastro.</p>
+        <p>Ex: Se aos 12 meses a criança deve tomar as vacinas Meningo C, Pneumo 10 e Tríplice Viral, as mesmas podem ser agrupadas para envio de uma única notificação como lembrete desta data. Criando aqui a “Vacinação Meningo C + Pneumo 10 + Tríplice Viral”.</p>
+    </div> 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Formulário de vacina</h3>
+            <h3 class="card-title">Incluir/Atualizar Vacina</h3>
         </div>
-        
         <form action="{{ route('vaccines.store') }}" method="post">
             @csrf
             @if ($vaccine)

@@ -6,13 +6,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ !$person ? 'Cadastro' : 'Atualização' }} de pessoa</h1>
+                <h1>{{ !$person ? 'Cadastro' : 'Atualização' }} de Usuário</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('persons.index') }}">Lista de pessoas</a></li>
-                    <li class="breadcrumb-item active">{{ !$person ? 'Cadastro' : 'Atualização' }} de pessoa</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('persons.index') }}">Lista de Usuários</a></li>
+                    <li class="breadcrumb-item active">{{ !$person ? 'Cadastro' : 'Atualização' }} de Usuário</li>
                 </ol>
             </div>
         </div>
@@ -23,7 +23,7 @@
     @include('flash-message')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Formulário de pessoa</h3>
+            <h3 class="card-title">Incluir/Atualizar Usuário</h3>
         </div>
         
         <form action="{{ route('persons.store') }}" method="post">
@@ -33,7 +33,7 @@
             @endif
             <div class="card-body">
                 <div class="form-group required">
-                    <label for="name" class="control-label">Nome do responsável:</label>
+                    <label for="name" class="control-label">Nome do responsável (completo):</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Informe o nome" value="{{ old('name', $person->name ?? '') }}" required>
                 </div>
                 <div class="form-group required">
@@ -60,8 +60,8 @@
                                     <div class="row align-items-center" id="row-child" >
                                         <div class="col-sm-4">
                                             <div class="form-group required">
-                                                <label for="name" class="control-label">Nome da criança: </label>
-                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança" value="{{ $child->name }}" required>
+                                                <label for="name" class="control-label">Nome da criança (completo): </label>
+                                                <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="Informe o nome da criança (completo)" value="{{ $child->name }}" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
         </form>
     </div>
@@ -106,7 +106,7 @@
             $('#phone').inputmask('(99)99999999[9]')
 
             $('#btn-new-child').click(function() {
-                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança: </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="nome da criança" required> </div></div><div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança para notificação: </label> <input type="text" class="form-control" class="childrens_notification" name="childrens_notification[]" placeholder="nome da criança para a notificação" required> </div></div><div class="col-sm-3"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div></div><div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div></div>';    
+                var rowChild = '<div class="row align-items-center" id="row-child" > <div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança (completo): </label> <input type="text" class="form-control" class="childrens" name="childrens[]" placeholder="nome da criança (completo)" required> </div></div><div class="col-sm-4"> <div class="form-group required"> <label for="name" class="control-label">Nome da criança para notificação: </label> <input type="text" class="form-control" class="childrens_notification" name="childrens_notification[]" placeholder="nome da criança para a notificação" required> </div></div><div class="col-sm-3"> <div class="form-group required"> <label for="birth" class="control-label">Data de nascimento: </label> <input type="date" class="form-control" class="birth" name="birth[]" placeholder="Informe a data de nascimento" required> </div></div><div class="col-sm-1 "> <button type="button" class="btn btn-danger btn-delete-child"> <i class="far fa-times-circle"></i> </button> </div></div>';    
                 $("#container-child").append(rowChild);
             });
 

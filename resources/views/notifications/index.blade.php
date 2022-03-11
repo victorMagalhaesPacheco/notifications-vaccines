@@ -6,12 +6,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Lista de notificações</h1>
+                <h1>Notificações Cadastradas</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
-                    <li class="breadcrumb-item active">Lista de notificações</li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
+                    <li class="breadcrumb-item active">Notificações Cadastradas</li>
                 </ol>
             </div>
         </div>
@@ -40,9 +40,9 @@
                     <tr>
                         <th>#id</th>
                         <th>Vacina</th>
-                        <th>Plataformas</th>
-                        <th>Nome</th>
-                        <th>Dias para vacinação após nascimento</th>
+                        <th>Plataformas de envio</th>
+                        <th>Nome da notificação</th>
+                        <th>Dia para notificar após nascimento</th>
                         <th>Situação</th>
                         <th>Data de criação</th>
                         <th>Ações</th>
@@ -113,7 +113,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="callout callout-info">
-                                                            <h5>Plataformas</h5>
+                                                            <h5>Plataformas de envio</h5>
                                                             @forelse ($notification->platforms as $notificationPlatform)
                                                                 <span
                                                                     class="badge bg-info">#{{ $notificationPlatform->platform->id }}
@@ -134,13 +134,13 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="callout callout-info">
-                                                            <h5>Dias para vacinação após nascimento</h5>
+                                                            <h5>Dia para notificar após nascimento</h5>
                                                             <p>{{ $notification->days }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="callout callout-info">
-                                                            <h5>Alertar notificação em dias antes</h5>
+                                                            <h5>Alerta adicional</h5>
                                                             <p>{{ $notification->alertdaysbefore }}</p>
                                                         </div>
                                                     </div>
@@ -212,9 +212,9 @@
                     <tr>
                         <th>#id</th>
                         <th>Vacina</th>
-                        <th>Plataformas</th>
+                        <th>Plataformas de envio</th>
                         <th>Nome</th>
-                        <th>Dias para vacinação após nascimento</th>
+                        <th>Dia para notificar após nascimento</th>
                         <th>Situação</th>
                         <th>Data de criação</th>
                         <th>Ações</th>

@@ -64,8 +64,8 @@ class NotificationController extends Controller
             'status' => 'required',
         ], [
             'vaccine_id.required' => 'O campo vacina é obrigatório.',
-            'platform_ids.required' => 'O campo plataforma é obrigatório.',
-            'days.required' => 'O campo Dias para vacinação após nascimento é obrigatório.',
+            'platform_ids.required' => 'O campo plataforma de envio é obrigatório.',
+            'days.required' => 'O campo Dia para notificar após nascimento é obrigatório.',
         ]);
 
         if ($validator->fails()) {
@@ -77,7 +77,7 @@ class NotificationController extends Controller
         $data = $request;
         $this->notificationService->create($data);
         
-        return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
+        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
     }
 
     public function send(Request $request)

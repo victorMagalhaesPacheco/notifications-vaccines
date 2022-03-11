@@ -65,7 +65,7 @@ class PersonController extends Controller
         $data = $request;
         $this->personService->create($data);
 
-        return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
+        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
     }
 
     public function delete(Request $request)

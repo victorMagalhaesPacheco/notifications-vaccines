@@ -236,13 +236,13 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Dashboard',
+            'text'        => 'Painel de Controle',
             'url'         => 'admin/home',
             'icon'        => 'fas fa-chart-line'
         ],
         ['header' => 'Gerenciamento'],
         [
-            'text' => 'Pessoas',
+            'text' => 'Usuários',
             'url'  => 'admin/persons',
             'icon' => 'fas fa-fw fa-user',
         ],
@@ -256,7 +256,7 @@ return [
             'icon'    => 'fas fa-fw fa-bell',
             'submenu' => [
                 [
-                    'text' => 'Lista de notificações',
+                    'text' => 'Notificações Cadastradas',
                     'url'  => 'admin/notifications',
                     'icon' => 'fas fa-list',
                 ],

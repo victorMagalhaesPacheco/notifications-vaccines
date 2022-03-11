@@ -58,7 +58,7 @@ class VaccineController extends Controller
         
         );
 
-        return back()->with('success', 'Registro adicionada/atualizada com sucesso.');
+        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
     }
 
     public function delete(Request $request)

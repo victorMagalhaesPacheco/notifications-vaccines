@@ -10,8 +10,8 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Início</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Lista de notificações</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Notificações Cadastradas</a></li>
                     <li class="breadcrumb-item active">Simulação de notificações</li>
                 </ol>
             </div>
@@ -35,7 +35,7 @@
             <table id="simulate" class="table">
                 <thead>
                     <tr>
-                        <th>Plataforma</th>
+                        <th>Plataforma de envio</th>
                         <th>Responsável</th>
                         <th>Para</th>
                         <th>Mensagem</th>
@@ -57,7 +57,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>Plataforma</th>
+                        <th>Plataforma de envio</th>
                         <th>Responsável</th>
                         <th>Para</th>
                         <th>Mensagem</th>
