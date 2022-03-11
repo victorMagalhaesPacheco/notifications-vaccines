@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{ (int)$vaccine->id }}</td>
                             <td>{{ $vaccine->name }}</td>
-                            <td>{{ \Carbon\Carbon::parse($vaccine->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                            <td data-order="{{ \Carbon\Carbon::parse($vaccine->created_at) }}">{{ \Carbon\Carbon::parse($vaccine->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
                             <td>
                                 <a href="{{ route('vaccines.create', ['id' => $vaccine->id]) }}" data-toggle="tooltip"
                                     data-placement="top" title="Atualizar registro">

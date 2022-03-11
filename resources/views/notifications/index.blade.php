@@ -64,7 +64,7 @@
                             <td>{{ $notification->name }}</td>
                             <td>{{ $notification->days }}</td>
                             <td>{{ \App\Models\Notification::listStatus($notification->status) }}</td>
-                            <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
+                            <td data-order="{{ \Carbon\Carbon::parse($notification->created_at) }}">{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
                             </td>
                             <td>
                                 <a href="{{ route('notifications.create', ['id' => $notification->id]) }}" title="Atualizar registro">
