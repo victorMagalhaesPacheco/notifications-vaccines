@@ -38,20 +38,20 @@
             <table id="notifications" class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
-                        <th>#id</th>
                         <th>Vacina</th>
                         <th>Plataformas de envio</th>
                         <th>Nome da notificação</th>
                         <th>Dia para notificar após nascimento</th>
                         <th>Situação</th>
                         <th>Data de criação</th>
+                        <th>#id</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($notifications as $notification)
                         <tr>
-                            <td>{{ $notification->id }}</td>
+                            
                             <td>{{ $notification->vaccine->name }}</td>
                             <td>
                                 @forelse ($notification->platforms as $notificationPlatform)
@@ -66,6 +66,7 @@
                             <td>{{ \App\Models\Notification::listStatus($notification->status) }}</td>
                             <td data-order="{{ \Carbon\Carbon::parse($notification->created_at) }}">{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
                             </td>
+                            <td>{{ $notification->id }}</td>
                             <td>
                                 <a href="{{ route('notifications.create', ['id' => $notification->id]) }}" title="Atualizar registro">
                                     <i class="fas fa-pen"></i>
@@ -182,13 +183,13 @@
                                                     <div class="callout callout-success">
                                                         <h5>#{{ $notificationPlatform->id }} -
                                                             {{ $notificationPlatform->platform->name }}</h5>
-                                                        <p>{{ $notificationPlatform->message }}</p>
+                                                        <p>{!! $notificationPlatform->message !!}</p>
                                                          @foreach ($notification->sent as $sent)
                                                             @if($sent->platform_id == $notificationPlatform->platform_id)
                                                                 <div class="callout callout-info">
                                                                     <small class="badge badge-info">#SID:</small> {{ $sent->sid }}<br>
                                                                     <small class="badge badge-info">Para:</small>  {{ '#' . $sent->person->id . ' | ' . $sent->person->name . ' | ' . $sent->to }}<br>
-                                                                    <small class="badge badge-info">Mensagem:</small>  {{ $sent->body }}<br>
+                                                                    <small class="badge badge-info">Mensagem:</small>  {!! $sent->body !!}<br>
                                                                     <small class="badge badge-info">Enviado em:</small>  {{ \Carbon\Carbon::parse($sent->created_at)->format('d/m/Y H:i:s') ?? '---' }}<br>
                                                                 </div>
                                                             @endif
@@ -210,13 +211,13 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>#id</th>
                         <th>Vacina</th>
                         <th>Plataformas de envio</th>
                         <th>Nome</th>
                         <th>Dia para notificar após nascimento</th>
                         <th>Situação</th>
                         <th>Data de criação</th>
+                        <th>#id</th>
                         <th>Ações</th>
                     </tr>
                 </tfoot>

@@ -24,7 +24,6 @@
             <table id="notifications" class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
-                        <th>#id</th>
                         <th>Notificação</th>
                         <th>Plataforma de envio</th>
                         <th>Pessoas</th>
@@ -32,26 +31,26 @@
                         <th>Para</th>
                         <th>Mensagem</th>
                         <th>Data de envio</th>
+                        <th>#id</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($notificationsSent as $notification)
                         <tr>
-                            <td>{{ $notification->id }}</td>
                             <td>{{ $notification->notification->name }}</td>
                             <td>{{ $notification->platform->name }}</td>
                             <td>{{ $notification->person->name }}</td>
                             <td>{{ $notification->sid ?? '---' }}</td>
                             <td>{{ $notification->to }}</td>
                             <td>{{ $notification->body }}</td>
-                            <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}
+                            <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                            <td>{{ $notification->id }}</td>
                         </tr>
 
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th>#id</th>
                         <th>Notificação</th>
                         <th>Plataforma de envio</th>
                         <th>Pessoas</th>
@@ -59,6 +58,7 @@
                         <th>Para</th>
                         <th>Mensagem</th>
                         <th>Data de envio</th>
+                        <th>#id</th>
                     </tr>
                 </tfoot>
             </table>

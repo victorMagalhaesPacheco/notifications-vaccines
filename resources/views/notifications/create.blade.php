@@ -68,8 +68,8 @@
                         <p>Para criar e editar mensagens personalizadas com os nomes dos responsáveis e das crianças cadastradas utilize as palavras dinâmicas conforme exemplificado abaixo.</p>
                         <p>
                             <i>
-                                Palavras dinâmicas:
-                                - Nome do responsável = [person.name] (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)
+                                Palavras dinâmicas:<br>
+                                - Nome do responsável = [person.name] (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
                                 - Nome da criança = [child.name] (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
                             </i>
                         </p>
@@ -119,7 +119,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
             </div>
         </form>
     </div>
@@ -156,6 +156,9 @@
                     
                 });
             }
+
+            $('#message_platform_2').summernote();
+            $('#message_platform_3').summernote();
         });
     </script>
 @stop

@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Simulação de notificações notificações</h1>
+                <h1>Simulação de Notificações</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -26,7 +26,7 @@
         </div>
         <div class="card-body">
             <a href="{{ route('notifications.send') }}">
-                <button type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i> Enviar</button>
+                <button type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i> Forçar Envio</button>
             </a>
         </div>
     </div>
@@ -47,7 +47,7 @@
                             <td>{{ $notification['platform'] }}</td>
                             <td>{{ $notification['person'] }}</td>
                             <td>{{ $notification['to'] }}</td>
-                            <td>{{ $notification['body'] }}</td>                          
+                            <td>{!! $notification['body'] !!}</td>                          
                         </tr>
                     @empty
                         <tr>

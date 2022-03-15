@@ -35,18 +35,18 @@
             <table id="vaccines" class="table table-bordered table-striped datatable">
                 <thead>
                     <tr>
-                        <th>#id</th>
                         <th>Nome</th>
                         <th>Data de criação do registro</th>
+                        <th>#id</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($vaccines as $vaccine)
                         <tr>
-                            <td>{{ (int)$vaccine->id }}</td>
                             <td>{{ $vaccine->name }}</td>
                             <td data-order="{{ \Carbon\Carbon::parse($vaccine->created_at) }}">{{ \Carbon\Carbon::parse($vaccine->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                            <td>{{ (int)$vaccine->id }}</td>
                             <td>
                                 <a href="{{ route('vaccines.create', ['id' => $vaccine->id]) }}" data-toggle="tooltip"
                                     data-placement="top" title="Atualizar registro">

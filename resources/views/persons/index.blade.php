@@ -40,6 +40,7 @@
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Data do registro</th>
+                    <th>ID</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -49,7 +50,7 @@
                         <td>{{ $person->name }}</td>
                         <td>
                             @forelse ($person->childrens as $child)
-                                <span class="badge bg-info">#{{ $child->id }} - {{ $child->name }}</span>    
+                                <span class="badge bg-info">#{{ $child->id }} - {{ $child->name }} - {{ \Carbon\Carbon::parse($child->birth)->format('d/m/Y') ?? '---' }}</span>    
                             @empty
                                 ---
                             @endforelse
@@ -57,6 +58,8 @@
                         <td>{{ $person->email ?? '---' }}</td>
                         <td>{{ $person->phone ?? '---' }}</td>
                         <td>{{ \Carbon\Carbon::parse($person->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                        <td>{{ $person->id ?? '---' }}</td>
+                        
                         <td>
                             <a href="{{ route('persons.create', ['id' => $person->id]) }}" data-toggle="tooltip" data-placement="top" title="Atualizar registro">
                                 <i class="fas fa-pen"></i>
@@ -75,6 +78,7 @@
                     <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Data do registro</th>
+                    <th>ID</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>

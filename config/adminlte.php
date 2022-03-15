@@ -261,9 +261,14 @@ return [
                     'icon' => 'fas fa-list',
                 ],
                 [
-                    'text' => 'Histórico de notificações',
+                    'text' => 'Histórico de Notificações',
                     'url'  => 'admin/notifications/history',
                     'icon' => 'fas fa-history',
+                ],
+                [
+                    'text' => 'Notificações do Dia',
+                    'url'  => 'admin/notifications/send?simulate=true',
+                    'icon' => 'fas fa-paper-plane',
                 ],
             ]
         ]
@@ -378,7 +383,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => asset('js/datatableconfig.js'),
+                    'location' => 'js/datatableconfig.js',
                 ],
 
             ],
@@ -430,6 +435,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'Summernote' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/summernote/summernote-bs4.js',
                 ],
             ],
         ],
