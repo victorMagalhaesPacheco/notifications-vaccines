@@ -188,7 +188,8 @@ return [
         'current_password' => 'senha atual',
         'birth' => 'data de nascimento',
         'days' => 'dias',
-        'status' => 'situação'
+        'status' => 'situação',
+        'password_confirm' => 'confirmação de senha'
     ],
 
 ];

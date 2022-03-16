@@ -191,7 +191,7 @@ return [
     'dashboard_url' => 'home',
     'logout_url' => 'logout',
     'login_url' => 'login',
-    'register_url' => 'register',
+    'register_url' => false,
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
     'profile_url' => false,
@@ -244,7 +244,7 @@ return [
         [
             'text' => 'Usuários',
             'url'  => 'admin/persons',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Vacinas',
@@ -269,6 +269,17 @@ return [
                     'text' => 'Notificações do Dia',
                     'url'  => 'admin/notifications/send?simulate=true',
                     'icon' => 'fas fa-paper-plane',
+                ],
+            ]
+        ],
+        [
+            'text'    => 'Administração',
+            'icon'    => 'fas fa-fw fa-cog',
+            'submenu' => [
+                [
+                    'text' => 'Operadores Cadastradas',
+                    'url'  => 'admin/operators',
+                    'icon' => 'fas fa-fw fa-user',
                 ],
             ]
         ]

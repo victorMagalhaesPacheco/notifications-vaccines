@@ -19,10 +19,16 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::group(['prefix' => '/admin'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
     Route::get('/persons', [App\Http\Controllers\PersonController::class, 'index'])->name('persons.index');
     Route::get('/persons/create/{id?}', [App\Http\Controllers\PersonController::class, 'create'])->name('persons.create');
     Route::get('/persons/delete/{id}', [App\Http\Controllers\PersonController::class, 'delete'])->name('persons.delete');
     Route::post('/persons/store', [App\Http\Controllers\PersonController::class, 'store'])->name('persons.store');
+
+    Route::get('/operators', [App\Http\Controllers\OperatorController::class, 'index'])->name('operators.index');
+    Route::get('/operators/create/{id?}', [App\Http\Controllers\OperatorController::class, 'create'])->name('operators.create');
+    Route::get('/operators/delete/{id}', [App\Http\Controllers\OperatorController::class, 'delete'])->name('operators.delete');
+    Route::post('/operators/store', [App\Http\Controllers\OperatorController::class, 'store'])->name('operators.store');
 
     Route::get('/vaccines', [App\Http\Controllers\VaccineController::class, 'index'])->name('vaccines.index');
     Route::get('/vaccines/create/{id?}', [App\Http\Controllers\VaccineController::class, 'create'])->name('vaccines.create');
