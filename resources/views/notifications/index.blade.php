@@ -28,9 +28,6 @@
             <a href="{{ route('notifications.create') }}">
                 <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Novo</button>
             </a>
-            <a href="{{ route('notifications.send') }}?simulate=true">
-                <button type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i> Simular envio de notificações</button>
-            </a>
         </div>
     </div>
     <div class="card">
@@ -70,6 +67,9 @@
                             <td>
                                 <a href="{{ route('notifications.create', ['id' => $notification->id]) }}" title="Atualizar registro">
                                     <i class="fas fa-pen"></i>
+                                </a>&nbsp;
+                                <a style="color: red;" title="Deletar registro?" href="#" data-href="{{ route('notifications.delete', ['id' => $notification->id]) }}" data-toggle="modal" data-target="#confirm-delete">
+                                    <i class="fas fa-trash-alt"></i>
                                 </a>&nbsp;
                                 <a href="#" title="Visualizar detalhes">
                                     <i style="color: green;" data-toggle="modal" data-target="#modal-messages_{{ $notification->id }}"
@@ -227,12 +227,12 @@
     </div>
 
     @include('modal',
-    [
-    'idModal' => 'confirm-delete',
-    'title' => 'Confirmação',
-    'message' => 'Você tem certeza que desejar remover o registro?',
-    'type' => 'danger'
-    ]
+        [
+            'idModal' => 'confirm-delete',
+            'title' => 'Confirmação',
+            'message' => 'Você tem certeza que desejar remover o registro? Ao confirmar, você perderá todo o histórico de envios de notificações e não será possível recuperar.',
+            'type' => 'danger'
+        ]
     )
 @stop
 

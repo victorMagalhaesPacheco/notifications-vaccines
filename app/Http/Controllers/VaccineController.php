@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vaccine;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,23 +51,32 @@ class VaccineController extends Controller
                         ->withInput();
         }
 
-        Vaccine::updateOrCreate(
-            ['id' => $request->id],
-            [
-                'name' => $request->name,
-            ]
-        
-        );
+        try {
+            Vaccine::updateOrCreate(
+                ['id' => $request->id],
+                [
+                    'name' => $request->name,
+                ]
+            
+            );
 
-        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+            return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi criar ou atualizar o registro.']);
+        }
     }
 
     public function delete(Request $request)
     {
-        $vaccine = Vaccine::findOrFail($request->id);
+        try {
+            $vaccine = Vaccine::findOrFail($request->id);
 
-        $vaccine->delete();      
-        return back()->with(['success' => 'Registro deletado.']);
+            $vaccine->delete();      
+            return back()->with(['success' => 'Registro deletado.']);
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi possível deletar o registro.']);
+        } 
 
     }
 }

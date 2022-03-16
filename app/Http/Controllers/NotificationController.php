@@ -8,6 +8,7 @@ use App\Models\Person;
 use App\Models\Platform;
 use App\Models\Vaccine;
 use App\Services\NotificationService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -73,11 +74,14 @@ class NotificationController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-
-        $data = $request;
-        $this->notificationService->create($data);
-        
-        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+        try {
+            $data = $request;
+            $this->notificationService->create($data);
+            
+            return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi criar ou atualizar o registro.']);
+        }
     }
 
     public function send(Request $request)
@@ -99,5 +103,19 @@ class NotificationController extends Controller
         return view('notifications.history', [
             'notificationsSent' => NotificationSend::all()
         ]);
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $notification = Notification::findOrFail($request->id);
+            $notification->platforms()->delete();
+            $notification->sent()->delete();
+            $notification->delete();      
+            return back()->with(['success' => 'Registro deletado.']);
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi possível deletar o registro.']);
+        }   
+        
     }
 }

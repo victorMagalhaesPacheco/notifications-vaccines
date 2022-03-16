@@ -6,6 +6,7 @@ use App\Models\Notification;
 use App\Models\NotificationSend;
 use App\Models\Person;
 use App\Models\Platform;
+use Exception;
 use Twilio\Rest\Client;
 use Illuminate\Http\Request;
 

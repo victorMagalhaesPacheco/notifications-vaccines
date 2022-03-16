@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use App\Services\PersonService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -57,23 +58,31 @@ class PersonController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return  back()
+            return back()
                         ->withErrors($validator)
                         ->withInput();
         }
 
-        $data = $request;
-        $this->personService->create($data);
+        try {
+            $data = $request;
+            $this->personService->create($data);
 
-        return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+            return back()->with('success', 'Registro adicionado/atualizado com sucesso.');
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi criar ou atualizar o registro.']);
+        }
     }
 
     public function delete(Request $request)
     {
-        $person = Person::findOrFail($request->id);
-        $person->childrens()->delete();
-        $person->delete();      
-        return back()->with(['success' => 'Registro deletado.']);
+        try {
+            $person = Person::findOrFail($request->id);
+            $person->childrens()->delete();
+            $person->delete();      
+            return back()->with(['success' => 'Registro deletado.']);
 
+        } catch (Exception $e) {
+            return back()->with(['alert' => 'Não foi possível deletar o registro.']);
+        } 
     }
 }
