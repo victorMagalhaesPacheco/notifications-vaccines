@@ -1,18 +1,18 @@
 @extends('adminlte::page')
 
-@section('title', 'Simulação de Notificações')
+@section('title', 'Notificações do Dia')
 
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Simulação de Notificações</h1>
+                <h1>Notificações do Dia</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Painel de Controle</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('notifications.index') }}">Notificações Cadastradas</a></li>
-                    <li class="breadcrumb-item active">Simulação de notificações</li>
+                    <li class="breadcrumb-item active">Notificações do Dia</li>
                 </ol>
             </div>
         </div>

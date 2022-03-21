@@ -80,7 +80,7 @@ class NotificationService
                         $message = str_replace(
                             ['[person.name]', '[child.name]'],
                             [$child->parent->name_notification, $child->name_notification],
-                            '[Alerta] ' . $notificationPlatform->message
+                            $notificationPlatform->message
                         );
                         $notificationsSend[] = $this->sendMessage($notificationPlatform, $child->parent, $message, $simulate);                     
                     }
@@ -108,7 +108,7 @@ class NotificationService
                 $message = $request->body;
             } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
                 $details = [
-                    'title' => 'VacinaMe - Notificação',
+                    'title' => 'vaciname - Notificação',
                     'message' => $message
                 ];
                   

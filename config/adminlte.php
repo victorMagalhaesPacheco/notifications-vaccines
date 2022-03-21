@@ -277,7 +277,7 @@ return [
             'icon'    => 'fas fa-fw fa-cog',
             'submenu' => [
                 [
-                    'text' => 'Operadores Cadastradas',
+                    'text' => 'Operadores Cadastrados',
                     'url'  => 'admin/operators',
                     'icon' => 'fas fa-fw fa-user',
                 ],

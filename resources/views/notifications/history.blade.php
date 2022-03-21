@@ -30,7 +30,7 @@
                         <th>SID</th>
                         <th>Para</th>
                         <th>Mensagem</th>
-                        <th>Data de envio</th>
+                        <th>Data</th>
                         <th>#id</th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                         <th>SID</th>
                         <th>Para</th>
                         <th>Mensagem</th>
-                        <th>Data de envio</th>
+                        <th>Data</th>
                         <th>#id</th>
                     </tr>
                 </tfoot>
