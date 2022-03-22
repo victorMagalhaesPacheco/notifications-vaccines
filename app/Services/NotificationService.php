@@ -158,4 +158,9 @@ class NotificationService
             return $nofiticationsSimulated;
         }
     }
+
+    public function __invoke()
+    {
+        $this->send(new Request());
+    }
 }
