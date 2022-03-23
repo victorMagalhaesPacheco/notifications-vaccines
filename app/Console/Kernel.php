@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(new NotificationService)->dailyAt('12:00');
+        $schedule->call(new NotificationService)->dailyAt(env('HOUR_CRON_EXEC', '08:00'));
     }
 
     /**

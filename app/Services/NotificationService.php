@@ -9,6 +9,7 @@ use App\Models\Platform;
 use Exception;
 use Twilio\Rest\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class NotificationService
 {
@@ -161,6 +162,8 @@ class NotificationService
 
     public function __invoke()
     {
+
+        Log::info("CRONTAB EXECUTADA COM SUCESSO.");
         $this->send(new Request());
     }
 }
