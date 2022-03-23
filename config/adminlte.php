@@ -45,11 +45,11 @@ return [
     |
     */
 
-    'logo' => '<i class="fas fa-fw fa-syringe"></i> VacinaMe',
-    'logo_img' => false,
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => false,
+    'logo_img' => 'img/vaciname.png',
+    'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl_class' => false,
     'logo_img_alt' => '',
 
     /*
