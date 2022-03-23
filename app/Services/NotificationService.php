@@ -96,17 +96,37 @@ class NotificationService
     {
         if (!$simulate) {
             if ($notificationPlatform->platform_id == Platform::PLATFORM_SMS) {
-                $request = $this->twilio->messages->create(
-                    '+55' . $parent->phone,
-                    [
-                        'from' => env('TWILIO_NUMBER_FROM', ''),
-                        'body' => $message
-                    ]
-                );
-    
-                $sid = $request->sid;
-                $to = $request->to;
-                $message = $request->body;
+                try {
+                    $request = $this->twilio->messages->create(
+                        '+55' . $parent->phone,
+                        [
+                            'from' => env('TWILIO_NUMBER_FROM', ''),
+                            'body' => $message
+                        ]
+                    );
+
+                    $sid = $request->sid;
+                    $to = $request->to;
+                    $message = $request->body;
+                } catch (\Twilio\Exceptions\RestException $restException) {
+                    Log::error($restException->getMessage());
+                }
+            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
+                try {
+                    $request = $this->twilio->messages->create(
+                        'whatsapp:+55' . $parent->getPhoneWhatsapp(),
+                        [
+                            'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
+                            'Body' => $message
+                        ]
+                    );
+
+                    $message = $request->body;
+                    $sid = $request->sid;
+                    $to = $request->to;
+                } catch (\Twilio\Exceptions\RestException $restException) {
+                    Log::error($restException->getMessage());
+                }                
             } else if ($notificationPlatform->platform_id == Platform::PLATFORM_EMAIL) {
                 $details = [
                     'title' => 'vaciname - Notificação',
@@ -117,27 +137,14 @@ class NotificationService
     
                 $sid = '---';
                 $to = $parent->email;
-            } else if ($notificationPlatform->platform_id == Platform::PLATFORM_WHATSAPP) {
-    
-                $request = $this->twilio->messages->create(
-                    'whatsapp:+55' . $parent->getPhoneWhatsapp(),
-                    [
-                        'From' => 'whatsapp:' . env('TWILIO_NUMBER_WHATSAPP_FROM', ''),
-                        'Body' => $message
-                    ]
-                );
-    
-                $message = $request->body;
-                $sid = $request->sid;
-                $to = $request->to;
-            }
+            } 
     
             NotificationSend::create([
                 'notification_id' => $notificationPlatform->notification_id,
                 'platform_id' => $notificationPlatform->platform_id,
                 'person_id' => $parent->id,
-                'sid' => $sid,
-                'to' => $to,
+                'sid' => $sid ?? '---',
+                'to' => $to ?? '---',
                 'body' => $message
             ]);
         } else {
