@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Sistema de notificações de vacinas',
+    'title' => 'VacinaME',
     'title_prefix' => '',
     'title_postfix' => '',
 

@@ -1,7 +1,5 @@
 @extends('adminlte::page')
 
-@section('title', 'Notificações do Dia')
-
 @section('content_header')
     <div class="container-fluid">
         <div class="row mb-2">
