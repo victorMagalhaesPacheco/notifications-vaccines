@@ -27,10 +27,10 @@
                         <th>Notificação</th>
                         <th>Plataforma de envio</th>
                         <th>Pessoas</th>
-                        <th>SID</th>
                         <th>Para</th>
                         <th>Mensagem</th>
                         <th>Data</th>
+                        <th>SID</th>
                         <th>#id</th>
                     </tr>
                 </thead>
@@ -40,10 +40,10 @@
                             <td>{{ $notification->notification->name }}</td>
                             <td>{{ $notification->platform->name }}</td>
                             <td>{{ $notification->person->name }}</td>
-                            <td>{{ $notification->sid ?? '---' }}</td>
                             <td>{{ $notification->to }}</td>
                             <td>{{ $notification->body }}</td>
                             <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
+                            <td>{{ $notification->sid ?? '---' }}</td>
                             <td>{{ $notification->id }}</td>
                         </tr>
 
@@ -54,10 +54,10 @@
                         <th>Notificação</th>
                         <th>Plataforma de envio</th>
                         <th>Pessoas</th>
-                        <th>SID</th>
                         <th>Para</th>
                         <th>Mensagem</th>
                         <th>Data</th>
+                        <th>SID</th>
                         <th>#id</th>
                     </tr>
                 </tfoot>
