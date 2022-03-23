@@ -39,7 +39,7 @@
                             <td>{{ $notification->platform->name }}</td>
                             <td>{{ $notification->person->name }}</td>
                             <td>{{ $notification->to }}</td>
-                            <td>{{ $notification->body }}</td>
+                            <td>{!! $notification->body !!}</td>
                             <td>{{ \Carbon\Carbon::parse($notification->created_at)->format('d/m/Y H:i:s') ?? '---' }}</td>
                             <td>{{ $notification->sid ?? '---' }}</td>
                             <td>{{ $notification->id }}</td>
