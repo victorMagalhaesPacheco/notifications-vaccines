@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'VacinaME',
+    'title' => env('APP_NAME', 'Vaciname'),
     'title_prefix' => '',
     'title_postfix' => '',
 
