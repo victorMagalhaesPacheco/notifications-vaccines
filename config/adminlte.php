@@ -47,6 +47,7 @@ return [
 
     'logo' => false,
     'logo_img' => 'img/vaciname.png',
+    'logo_img_fundo_claro' => 'img/vaciname-fundo-escuro.png',
     'logo_img_class' => 'brand-image-xl',
     'logo_img_xl' => null,
     'logo_img_xl_class' => false,

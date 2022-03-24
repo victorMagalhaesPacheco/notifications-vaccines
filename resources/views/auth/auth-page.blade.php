@@ -20,7 +20,7 @@
 
         {{-- Logo --}}
         <div class="{{ $auth_type ?? 'login' }}-logo">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="70">
+                <img src="{{ asset(config('adminlte.logo_img_fundo_claro')) }}" height="70">
                 {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
 
         </div>

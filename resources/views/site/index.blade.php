@@ -17,7 +17,7 @@
     <div id="page-wrapper">
         <!-- Header -->
         <header id="header" class="alt">
-            <h1><a href="index.html">VacinaMe</a></h1>
+            <h1><img src="{{ asset('img/vaciname-fundo-escuro.png') }}" alt="" width="80"> </h1>
             <nav id="nav">
                 <ul>
                     <li class="special">
