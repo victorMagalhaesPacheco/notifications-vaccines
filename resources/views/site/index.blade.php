@@ -56,11 +56,9 @@
             <div class="inner">
                 <header class="major">
                     <h2>Quem somos</h2>
-                    <p>
-                       <b>Missão</b>: Existimos para favorecer o aumento da cobertura vacinal da população.<br />
-                       <b>Visão</b>: VacinaMe almeja contribuir com a diminuição da incidência de doenças imunopreveníveis<br />
-                       <b>Missão</b>: Integridade, Honestidade, Respeito, Responsabilidade e Compromisso Social.<br />
-                     </p>
+                    <p><b>Missão</b>: Existimos para favorecer o aumento da cobertura vacinal da população.<br /></p>
+                    <p><b>Visão</b>: VacinaMe almeja contribuir com a diminuição da incidência de doenças imunopreveníveis<br /></p>
+                    <p><b>Valores</b>: Integridade, Honestidade, Respeito, Responsabilidade e Compromisso Social.<br /></p>
                 </header>
             </div>
         </section>
@@ -78,7 +76,7 @@
                 <div class="image"><img src="{{ asset('site/spectral/images/pic02.jpg') }}" alt="" /></div>
                 <div class="content">
                     <h2>Propósito</h2>
-                    <p>VacinaMe busca contribuir com o aumento da cobertura vacinal da população através desta ferramenta, dimunuindo assim a incidência de doenças e imunopreveniveis.</p>
+                    <p>VacinaMe busca contribuir com o aumento da cobertura vacinal da população através desta ferramenta, dimunuindo assim a incidência de doenças imunopreveníveis.</p>
                 </div>
             </section>
             <section class="spotlight" id="beneficio">
@@ -86,9 +84,9 @@
                 <div class="content">
                     <h2>Benefícios</h2>
                     <p>
-                       VacinaMe funciona através de lembretes por mensagens para telefones móveis, que podem alcançar escalabilidade e diminuir
+                       VacinaMe funciona através de lembretes por mensagens para telefones móveis, que pode alcançar escalabilidade e diminuir
                         o custo por lembrete enviado.<br>
-                        As pesquisas atuais indicam que o uso de notificações podem ajudar no aumento da cobertura vacinal.
+                        As pesquisas atuais indicam que o uso de notificações pode ajudar no aumento da cobertura vacinal.
                     </p>
                 </div>
             </section>
