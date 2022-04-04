@@ -51,7 +51,7 @@ class PersonController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:2|max:255',
             'name_notification' => 'required|min:2|max:255',
-            'email' => 'required|unique:persons,email,' . $request->id . '|email:rfc|max:255',
+            'email' => 'max:255',
             'phone' => 'required',
             'childrens.*' => 'required|min:2|max:255',
             'birth.*' => 'required',

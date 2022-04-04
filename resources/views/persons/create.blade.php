@@ -38,9 +38,9 @@
                     <label for="name" class="control-label">Nome do responsável para a notificação:</label>
                     <input type="text" class="form-control" id="name_notification" name="name_notification" placeholder="Informe o nome para a notificação" value="{{ old('name_notification', $person->name_notification ?? '') }}" required>
                 </div>
-                <div class="form-group required">
+                <div class="form-group">
                     <label for="email" class="control-label">E-mail:</label>
-                    <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}" required>
+                    <input type="mail" class="form-control" id="email" name="email" placeholder="Informe o e-mail" value="{{ old('email', $person->email ?? '') }}">
                 </div>
                 <div class="form-group required">
                     <label for="name" class="control-label">Telefone (SMS e WhatsApp):</label>
