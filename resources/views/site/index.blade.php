@@ -17,7 +17,7 @@
     <div id="page-wrapper">
         <!-- Header -->
         <header id="header" class="alt">
-            <h1><img src="{{ asset('img/vaciname.png') }}" alt="" width="80"> </h1>
+            <h1><img src="{{ asset('img/vaciname.png') }}" alt="" width="100"> </h1>
             <nav id="nav">
                 <ul>
                     <li class="special">
@@ -42,7 +42,9 @@
         <!-- Banner -->
         <section id="banner">
             <div class="inner">
-                <h2>{{ config('app.name') }}</h2>
+                <h2>
+                    <img style="margin-top:10px;" src="{{ asset('img/logo-site.png') }}" width="300" />
+                </h2>
                 <p>Notificações inteligentes</p>
                 {{-- <ul class="actions special">
                     <li><a href="#" class="button primary">Activate</a></li>
@@ -57,8 +59,10 @@
                 <header class="major">
                     <h2>Quem somos</h2>
                     <p><b>Missão</b>: Existimos para favorecer o aumento da cobertura vacinal da população.<br /></p>
-                    <p><b>Visão</b>: VacinaMe almeja contribuir com a diminuição da incidência de doenças imunopreveníveis<br /></p>
-                    <p><b>Valores</b>: Integridade, Honestidade, Respeito, Responsabilidade e Compromisso Social.<br /></p>
+                    <p><b>Visão</b>: Almejamos contribuir com a diminuição da incidência de doenças imunopreviníveis.<br /></p>
+                    <p><b>Valores</b>: Integridade, Respeito à Vida, Proteção da Saúde, Responsabilidade e Compromisso Social.
+                        VacinaMe nasceu a partir da Rede Nordeste de Formação em Saúde da Família (RENASF), por meio de pesquisa desenvolvida no Mestrado Profissional em Saúde da Família (MPSF) da Universidade Estadual do Ceará (UECE), e funciona como uma plataforma de envio de notificações com alertas para vacinação.
+                        <br /></p>
                 </header>
             </div>
         </section>
@@ -76,7 +80,8 @@
                 <div class="image"><img src="{{ asset('site/spectral/images/pic02.jpg') }}" alt="" /></div>
                 <div class="content">
                     <h2>Propósito</h2>
-                    <p>VacinaMe busca contribuir com o aumento da cobertura vacinal da população através desta ferramenta, dimunuindo assim a incidência de doenças imunopreveníveis.</p>
+                    <p>VacinaMe busca contribuir para o aumento da cobertura vacinal da população, diminuindo, assim, a incidência de doenças imunopreveníveis.
+                    </p>
                 </div>
             </section>
             <section class="spotlight" id="beneficio">
@@ -84,9 +89,7 @@
                 <div class="content">
                     <h2>Benefícios</h2>
                     <p>
-                       VacinaMe funciona através de lembretes por mensagens para telefones móveis, que pode alcançar escalabilidade e diminuir
-                        o custo por lembrete enviado.<br>
-                        As pesquisas atuais indicam que o uso de notificações pode ajudar no aumento da cobertura vacinal.
+                        VacinaMe funciona por meio de avisos automatizados enviados para telefones móveis. Essa ferramenta usa estratégia rápida e eficaz que, ao alcançar escalabilidade, aumenta a assiduidade e gera redução de custos. Pesquisas atuais indicam que o uso de notificações ajudam no aumento da cobertura vacinal.
                     </p>
                 </div>
             </section>
@@ -98,8 +101,7 @@
                 <header class="major">
                     <h2>Alcance</h2>
                     <p>
-                       VacinaMe pode se comunicar com qualquer pessoa que possui um telefone móvel, e já em 2019
-                        de acordo com o IBGE, mais de 80% das pessoas acima de 10 anos possuia pelo menos um telefone móvel do Brasil.
+                        VacinaMe pode se comunicar com qualquer pessoa que possui um telefone móvel. De acordo com o IBGE, em 2019, mais de 80% das pessoas acima de 10 anos possuía pelo menos um telefone móvel no Brasil.
                     </p>
                 </header>
                 {{-- <ul class="features">
