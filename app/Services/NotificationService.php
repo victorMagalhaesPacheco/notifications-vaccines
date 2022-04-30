@@ -66,8 +66,13 @@ class NotificationService
                     $birthAlertDaysBefore = \Carbon\Carbon::parse($child->birth);
 
                     $daySend = $birth->addDays($notification->days);
-                    $daySendAlertDaysBefore = $birthAlertDaysBefore->addDays($notification->alertdaysbefore);
-              
+                    
+                    if (!is_null($notification->alertdaysbefore)) {
+                        $daySendAlertDaysBefore = $birthAlertDaysBefore->addDays($notification->alertdaysbefore);
+                    } else {
+                        $daySendAlertDaysBefore = $birthAlertDaysBefore;
+                    }
+
                     if ($daySend->format('Y-m-d') == Date('Y-m-d')) {
                         $message = str_replace(
                             ['[person.name]', '[child.name]'],

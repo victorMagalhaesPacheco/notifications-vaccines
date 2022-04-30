@@ -60,9 +60,8 @@
                     <h2>Quem somos</h2>
                     <p><b>Missão</b>: Existimos para favorecer o aumento da cobertura vacinal da população.<br /></p>
                     <p><b>Visão</b>: Almejamos contribuir com a diminuição da incidência de doenças imunopreveníveis.<br /></p>
-                    <p><b>Valores</b>: Integridade, Respeito à Vida, Proteção da Saúde, Responsabilidade e Compromisso Social.
-                        VacinaMe nasceu a partir da Rede Nordeste de Formação em Saúde da Família (RENASF), por meio de pesquisa desenvolvida no Mestrado Profissional em Saúde da Família (MPSF) da Universidade Estadual do Ceará (UECE), e funciona como uma plataforma de envio de notificações com alertas para vacinação.
-                        <br /></p>
+                    <p><b>Valores</b>: Integridade, Respeito à Vida, Proteção da Saúde, Responsabilidade e Compromisso Social.</p>
+                    <p>VacinaMe nasceu a partir da Rede Nordeste de Formação em Saúde da Família (RENASF), por meio de pesquisa desenvolvida no Mestrado Profissional em Saúde da Família (MPSF) da Universidade Estadual do Ceará (UECE), e funciona como uma plataforma de envio de notificações com alertas para vacinação.</p>
                 </header>
             </div>
         </section>
