@@ -67,8 +67,8 @@
                         <p>
                             <i>
                                 Palavras dinâmicas:<br>
-                                - Nome do responsável = [person.name] (Ex.: Olá [person.name], seu filho deve ser vacinado em breve.)<br>
-                                - Nome da criança = [child.name] (Ex.: Olá Responsável, seu filho [child.name] deve ser vacinado em breve.)
+                                - Nome do responsável = <?php echo '{{1}}'; ?> (Ex.: Olá <?php echo '{{1}}'; ?>, seu filho deve ser vacinado em breve.)<br>
+                                - Nome da criança = <?php echo '{{2}}'; ?>   (Ex.: Olá Responsável, seu filho <?php echo '{{2}}'; ?> deve ser vacinado em breve.)
                             </i>
                         </p>
                     </div>                    
@@ -155,7 +155,6 @@
                 });
             }
 
-            $('#message_platform_2').summernote();
             $('#message_platform_3').summernote();
         });
     </script>

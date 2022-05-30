@@ -75,7 +75,7 @@ class NotificationService
 
                     if ($daySend->format('Y-m-d') == Date('Y-m-d')) {
                         $message = str_replace(
-                            ['[person.name]', '[child.name]'],
+                            ['{{1}}', '{{2}}'],
                             [$child->parent->name_notification, $child->name_notification],
                             $notificationPlatform->message
                         );
@@ -84,7 +84,7 @@ class NotificationService
 
                     if ($daySendAlertDaysBefore->format('Y-m-d') == Date('Y-m-d')) {
                         $message = str_replace(
-                            ['[person.name]', '[child.name]'],
+                            ['{{1}}', '{{2}}'],
                             [$child->parent->name_notification, $child->name_notification],
                             $notificationPlatform->message
                         );
